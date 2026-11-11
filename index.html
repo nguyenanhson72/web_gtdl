@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hồn Quê – Di sản văn hóa số</title>
+<meta name="description" content="Hồn Quê – Di sản văn hóa số: khám phá 4 khu du lịch Dấu Chân Cổ, Rừng Xanh, Hồn Quê Trong Tay Mẹ và Trấn Sơn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+/* ===== Biến màu & nền tảng ===== */
+:root{
+  --paper:#f5eedf; --paper-2:#ece2cd; --ink:#1b2620; --ink-2:#4a5a50;
+  --forest:#2f5d3a; --clay:#c0582f; --gold:#d9a441; --river:#3d6f86; --plum:#6b3f6e;
+  --line:rgba(27,38,32,.14);
+  --serif:"Playfair Display",Georgia,serif; --sans:"Be Vietnam Pro",system-ui,sans-serif;
+  --r:18px; --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65;overflow-x:hidden;
+  background-image:radial-gradient(rgba(120,90,40,.06) 1px,transparent 1px);background-size:4px 4px}
+img,svg{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+a{color:inherit}
+.wrap{width:min(1200px,92vw);margin-inline:auto}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--clay)}
+h1,h2,h3{font-family:var(--serif);line-height:1.1;font-weight:700}
+h2{font-size:clamp(2rem,4.6vw,3.6rem)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* ===== Thanh điều hướng ===== */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .4s,box-shadow .4s,color .4s;color:#fff8ea}
+.nav.solid{background:rgba(245,238,223,.92);backdrop-filter:blur(10px);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:.6rem;font-family:var(--serif);font-size:1.35rem;font-weight:800;text-decoration:none}
+.logo i{width:34px;height:34px;border-radius:50%;background:var(--clay);display:grid;place-items:center;color:#fff;font-style:normal;font-size:1rem}
+.nav ul{display:flex;gap:1.8rem;list-style:none;font-size:.92rem;font-weight:500}
+.nav ul a{text-decoration:none;opacity:.85;transition:opacity .2s}
+.nav ul a:hover{opacity:1}
+.nav .cta{padding:.6rem 1.1rem;border-radius:99px;background:var(--gold);color:var(--ink);font-weight:600;font-size:.9rem;text-decoration:none}
+.burger{display:none;width:42px;height:42px;border-radius:50%;border:1px solid currentColor}
+@media(max-width:860px){
+  .nav ul,.nav .cta{display:none}
+  .burger{display:grid;place-items:center}
+  .nav.open ul{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--paper);color:var(--ink);padding:1.4rem 4vw 2rem;gap:1.1rem;box-shadow:0 20px 40px rgba(0,0,0,.12)}
+}
+
+/* ===== Hero ===== */
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;color:#fff8ea;background:#1e3a3a}
+.hero .layer{position:absolute;inset:auto 0 0;width:100%;will-change:transform}
+.hero .sky{position:absolute;inset:0;background:linear-gradient(180deg,#203f45 0%,#a3593a 58%,#e8a85a 78%,#f2c98a 100%)}
+.hero .sun{position:absolute;left:62%;top:44%;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,#ffe7b0 0 40%,rgba(255,215,140,.0) 70%);filter:blur(1px)}
+.mist{position:absolute;left:-20%;width:140%;height:120px;background:radial-gradient(ellipse at center,rgba(255,240,220,.45),transparent 70%);animation:drift 26s linear infinite alternate}
+@keyframes drift{to{transform:translateX(12%)}}
+.birds{position:absolute;top:24%;left:18%;animation:fly 30s linear infinite}
+@keyframes fly{from{transform:translate(-30vw,20px)}to{transform:translate(90vw,-60px)}}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;z-index:5}
+.hero h1{font-size:clamp(3.6rem,13vw,10.5rem);font-weight:800;letter-spacing:-.02em;line-height:.9;text-shadow:0 6px 40px rgba(0,0,0,.25)}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--gold)}
+.hero p.lead{max-width:520px;margin-top:1.4rem;font-size:clamp(1rem,1.5vw,1.15rem);opacity:.92}
+.hero .eyebrow{color:#ffd99a}
+.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.95rem 1.5rem;border-radius:99px;font-weight:600;text-decoration:none;transition:transform .3s var(--ease),background .3s}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-ghost{border:1px solid rgba(255,248,234,.5);color:#fff8ea}
+.btn-ghost:hover{background:rgba(255,248,234,.12)}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:6;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:.8}
+.scroll-hint span{width:1px;height:46px;background:linear-gradient(#fff8ea,transparent);animation:pulse 2s infinite}
+@keyframes pulse{50%{transform:scaleY(.5);transform-origin:top}}
+
+/* ===== Dải số liệu ===== */
+.stats{background:var(--ink);color:var(--paper)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:2.2rem 1rem;border-right:1px solid rgba(245,238,223,.12)}
+.stat:last-child{border:0}
+.stat b{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);color:var(--gold);display:block;line-height:1}
+.stat span{font-size:.88rem;opacity:.75}
+@media(max-width:700px){.stats .wrap{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat{border-bottom:1px solid rgba(245,238,223,.12)}}
+
+/* ===== Giới thiệu ===== */
+section{position:relative}
+.intro{padding:clamp(5rem,10vw,8rem) 0}
+.intro .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center}
+.intro p{color:var(--ink-2);font-size:1.08rem;margin-top:1.2rem;max-width:56ch}
+.intro .quote{font-family:var(--serif);font-style:italic;font-size:1.4rem;border-left:3px solid var(--clay);padding-left:1.2rem;margin-top:2rem;color:var(--ink)}
+.intro-art{border-radius:200px 200px var(--r) var(--r);overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 60px rgba(60,40,20,.18)}
+.intro-art svg{width:100%;height:100%}
+@media(max-width:860px){.intro .wrap{grid-template-columns:1fr;gap:2.5rem}.intro-art{max-width:420px}}
+
+/* ===== Bản đồ tương tác ===== */
+.mapsec{padding:clamp(4rem,8vw,6rem) 0;background:var(--paper-2)}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.sec-head p{max-width:420px;color:var(--ink-2)}
+.map-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:1.5rem}
+.map-box{background:#e6dbc2;display:flex;align-items:center;border-radius:var(--r);overflow:hidden;position:relative;box-shadow:inset 0 0 0 1px var(--line)}
+.map-box svg{width:100%;height:auto}
+.zone{cursor:pointer;transition:filter .3s,transform .4s var(--ease);transform-box:fill-box;transform-origin:center}
+.zone:hover,.zone.active{filter:brightness(1.08) drop-shadow(0 8px 14px rgba(0,0,0,.25));transform:scale(1.03)}
+.zone .pin{transition:transform .3s var(--ease)}
+.zone.active .ring{animation:ring 1.8s infinite}
+@keyframes ring{from{r:16;opacity:.7}to{r:34;opacity:0}}
+.map-hint{position:absolute;left:1rem;bottom:1rem;background:rgba(27,38,32,.8);color:#fff;font-size:.78rem;padding:.4rem .8rem;border-radius:99px}
+.panel{border-radius:var(--r);overflow:hidden;background:var(--paper);display:flex;flex-direction:column;box-shadow:0 20px 50px rgba(60,40,20,.12)}
+.panel-scene{position:relative;aspect-ratio:3/2;overflow:hidden}
+.panel-scene .sc{position:absolute;inset:0;opacity:0;transform:scale(1.08);transition:opacity .8s,transform 1.2s var(--ease)}
+.panel-scene .sc.on{opacity:1;transform:scale(1)}
+.panel-scene .sc svg{width:100%;height:100%}
+.panel-body{padding:1.5rem 1.6rem 1.8rem;flex:1;display:flex;flex-direction:column}
+.panel-body h3{font-size:1.8rem;margin:.3rem 0 .6rem}
+.panel-body p{color:var(--ink-2);font-size:.95rem}
+.panel-list{list-style:none;margin:1.1rem 0 1.4rem;display:flex;flex-wrap:wrap;gap:.45rem}
+.panel-list li button{font-size:.82rem;padding:.4rem .8rem;border-radius:99px;border:1px solid var(--line);transition:.25s}
+.panel-list li button:hover{background:var(--ink);color:var(--paper)}
+.panel .btn{margin-top:auto;align-self:flex-start;background:var(--ink);color:var(--paper)}
+@media(max-width:960px){.map-grid{grid-template-columns:1fr}}
+
+/* ===== Từng khu ===== */
+.zsec{padding:clamp(5rem,9vw,7.5rem) 0;overflow:hidden}
+.zsec:nth-of-type(even){background:var(--paper-2)}
+.zhead{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.2rem,3vw,2.5rem);align-items:end;margin-bottom:3rem}
+.znum{font-family:var(--serif);font-size:clamp(6rem,16vw,12rem);line-height:.75;font-weight:800;color:transparent;-webkit-text-stroke:2px var(--zc)}
+.zhead h2 span{color:var(--zc);font-style:italic;font-weight:500}
+.zhead p{color:var(--ink-2);max-width:60ch;margin-top:.8rem}
+.zbody{display:grid;grid-template-columns:1fr 1.25fr;gap:2rem;align-items:start}
+.zsec.flip .zbody{grid-template-columns:1.25fr 1fr}
+.zsec.flip .zart{order:2}
+.zart{position:sticky;top:96px;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 60px rgba(40,30,20,.2)}
+.zart svg{width:100%;height:100%}
+.zart .badge{position:absolute;left:1rem;top:1rem;background:rgba(255,248,234,.92);padding:.45rem .9rem;border-radius:99px;font-size:.78rem;font-weight:600}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.card{position:relative;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem;min-height:210px;display:flex;flex-direction:column;transition:transform .45s var(--ease),box-shadow .45s,border-color .3s;overflow:hidden}
+.zsec:nth-of-type(even) .card{background:#fbf6ea}
+.card::after{content:"";position:absolute;inset:auto -30% -60% auto;width:220px;height:220px;border-radius:50%;background:var(--zc);opacity:.07;transition:transform .6s var(--ease)}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(40,30,20,.13);border-color:var(--zc)}
+.card:hover::after{transform:scale(1.6)}
+.card .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--zc) 14%,transparent);color:var(--zc);margin-bottom:1rem}
+.card .ic svg{width:24px;height:24px}
+.card .tp{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--zc);font-weight:600}
+.card h3{font-size:1.3rem;margin:.25rem 0 .45rem}
+.card p{font-size:.88rem;color:var(--ink-2)}
+.card .more{margin-top:auto;padding-top:1rem;font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:.4rem}
+.card .more i{font-style:normal;transition:transform .3s}
+.card:hover .more i{transform:translateX(5px)}
+.card.wide{grid-column:span 2}
+@media(max-width:960px){.zbody,.zsec.flip .zbody{grid-template-columns:1fr}.zsec.flip .zart{order:0}.zart{position:relative;top:0;aspect-ratio:16/10}}
+@media(max-width:560px){.cards{grid-template-columns:1fr}.card.wide{grid-column:auto}.zhead{grid-template-columns:1fr}}
+
+/* ===== Khám phá thêm ===== */
+.explore{padding:clamp(5rem,9vw,7rem) 0;background:var(--forest);color:var(--paper);overflow:hidden}
+.explore .eyebrow{color:var(--gold)}
+.explore p{opacity:.8}
+.flow{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:1.5rem 0 2rem;font-size:.9rem}
+.flow b{padding:.45rem .9rem;border-radius:99px;background:rgba(245,238,223,.12)}
+.search{display:flex;align-items:center;gap:.6rem;background:var(--paper);color:var(--ink);border-radius:99px;padding:.4rem .4rem .4rem 1.3rem;max-width:640px}
+.search input{flex:1;border:0;background:none;font:inherit;font-size:1rem;outline:none;min-width:0}
+.search button{background:var(--clay);color:#fff;padding:.75rem 1.3rem;border-radius:99px;font-weight:600}
+.chips{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.4rem}
+.chip{padding:.7rem 1.2rem;border-radius:99px;border:2px solid var(--cc,var(--gold));font-weight:600;font-size:.9rem;transition:.25s}
+.chip:hover{background:var(--cc,var(--gold));color:var(--ink)}
+.results{margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.8rem}
+.res{text-align:left;padding:1rem 1.1rem;border-radius:14px;background:rgba(245,238,223,.08);border:1px solid rgba(245,238,223,.14);transition:.25s}
+.res:hover{background:rgba(245,238,223,.16)}
+.res small{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.res b{font-weight:600}
+.empty{opacity:.7;font-size:.95rem}
+
+/* ===== Trò chơi đố vui ===== */
+.quiz{padding:clamp(5rem,9vw,7rem) 0;background:#18231d;color:var(--paper);overflow:hidden;
+  background-image:radial-gradient(circle at 85% 10%,rgba(217,164,65,.16),transparent 40%),radial-gradient(circle at 10% 90%,rgba(47,93,58,.5),transparent 45%)}
+.quiz .eyebrow{color:var(--gold)}
+.quiz-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.quiz-head p{max-width:440px;opacity:.75}
+.qcard{position:relative;max-width:860px;margin-inline:auto;background:var(--paper);color:var(--ink);border-radius:26px;padding:clamp(1.4rem,4vw,2.6rem);box-shadow:0 40px 80px rgba(0,0,0,.35);overflow:hidden}
+.qcard h3{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.4rem}
+.qcard .muted{color:var(--ink-2);font-size:.95rem}
+.topics{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin:1.6rem 0}
+.topic{text-align:left;padding:1.1rem 1.2rem;border-radius:16px;border:2px solid var(--line);transition:.25s;display:flex;gap:.9rem;align-items:center}
+.topic b{display:block;font-size:1rem}
+.topic small{color:var(--ink-2);font-size:.8rem}
+.topic .em{font-size:1.6rem;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--paper-2);flex:none}
+.topic:hover{border-color:var(--ink-2)}
+.topic[aria-pressed="true"]{border-color:var(--clay);background:#fbf3e3}
+.qstart{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.qbtn{background:var(--clay);color:#fff;padding:1rem 1.7rem;border-radius:99px;font-weight:600;transition:transform .25s var(--ease),background .25s}
+.qbtn:hover{transform:translateY(-2px)}
+.qbtn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.qtop{display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:.85rem;font-weight:600;flex-wrap:wrap}
+.qtop .pill{padding:.35rem .8rem;border-radius:99px;background:var(--paper-2)}
+.qtop .streak{background:#fde4cf;color:var(--clay)}
+.qprog{height:6px;border-radius:9px;background:var(--paper-2);margin:1rem 0 .4rem;overflow:hidden}
+.qprog i{display:block;height:100%;background:var(--forest);transition:width .5s var(--ease)}
+.qtime{height:4px;border-radius:9px;background:var(--paper-2);overflow:hidden;margin-bottom:1.6rem}
+.qtime i{display:block;height:100%;background:var(--gold);transform-origin:left;transition:background .3s}
+.qtime i.low{background:var(--clay)}
+.qcat{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);font-weight:600}
+.qtext{font-family:var(--serif);font-size:clamp(1.3rem,2.8vw,1.9rem);line-height:1.25;margin:.4rem 0 1.5rem}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.ans{display:flex;align-items:center;gap:.8rem;text-align:left;padding:1rem 1.1rem;border-radius:16px;border:2px solid var(--line);background:#fffaf0;font-weight:500;transition:transform .2s,border-color .2s,background .2s}
+.ans:hover:not(:disabled){border-color:var(--ink);transform:translateY(-2px)}
+.ans .k{width:32px;height:32px;border-radius:10px;background:var(--paper-2);display:grid;place-items:center;font-weight:700;flex:none;font-size:.85rem}
+.ans.ok{border-color:#3f8a4f;background:#e4f2e2}
+.ans.ok .k{background:#3f8a4f;color:#fff}
+.ans.bad{border-color:var(--clay);background:#fbe3da;animation:shake .4s}
+.ans.bad .k{background:var(--clay);color:#fff}
+.ans:disabled{cursor:default}
+.ans.dim{opacity:.5}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.why{margin-top:1.3rem;padding:1rem 1.2rem;border-radius:14px;background:var(--paper-2);font-size:.93rem;display:flex;gap:.8rem;align-items:flex-start;animation:fade .4s}
+.why b{display:block}
+.qnext{display:flex;justify-content:space-between;align-items:center;margin-top:1.3rem;gap:1rem;flex-wrap:wrap}
+.qnext .gain{font-weight:700;color:var(--forest)}
+.result{text-align:center}
+.result .big{font-family:var(--serif);font-size:clamp(4rem,12vw,6.5rem);font-weight:800;line-height:1;color:var(--clay)}
+.result .rank{display:inline-block;margin:.8rem 0;padding:.45rem 1rem;border-radius:99px;background:var(--forest);color:var(--paper);font-weight:600}
+.rstats{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:1.5rem 0}
+.rstats div{background:var(--paper-2);border-radius:14px;padding:.9rem}
+.rstats b{display:block;font-family:var(--serif);font-size:1.6rem}
+.rstats span{font-size:.78rem;color:var(--ink-2)}
+.review{text-align:left;margin:1.5rem 0;display:grid;gap:.6rem}
+.review div{padding:.9rem 1rem;border-left:3px solid var(--clay);background:#fbf3e3;border-radius:0 12px 12px 0;font-size:.9rem}
+.review div small{display:block;color:var(--forest);font-weight:600;margin-top:.2rem}
+.rbtns{display:flex;justify-content:center;gap:.7rem;flex-wrap:wrap}
+.qsrc{margin-top:1.6rem;font-size:.78rem;opacity:.6;text-align:center}
+.confetti{position:absolute;top:-10px;width:9px;height:14px;border-radius:2px;animation:fall 2.6s linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(720px) rotate(720deg);opacity:0}}
+@media(max-width:620px){.topics,.answers{grid-template-columns:1fr}.rstats b{font-size:1.25rem}}
+
+/* ===== Footer ===== */
+footer{background:var(--ink);color:rgba(245,238,223,.75);padding:4rem 0 2rem;font-size:.9rem}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem}
+footer h4{font-family:var(--serif);color:var(--paper);font-size:1.15rem;margin-bottom:.8rem}
+footer ul{list-style:none;display:grid;gap:.4rem}
+footer button{text-align:left;opacity:.8}
+footer button:hover{opacity:1;color:var(--gold)}
+.copy{grid-column:1/-1;border-top:1px solid rgba(245,238,223,.12);padding-top:1.5rem;margin-top:1rem;font-size:.8rem}
+@media(max-width:700px){footer .wrap{grid-template-columns:1fr}}
+
+/* ===== Modal nội dung (thư mục con con) ===== */
+.modal{position:fixed;inset:0;z-index:100;display:none}
+.modal.show{display:block}
+.modal .bg{position:absolute;inset:0;background:rgba(15,22,18,.6);backdrop-filter:blur(6px);animation:fade .3s}
+.sheet{position:absolute;right:0;top:0;bottom:0;width:min(720px,100%);background:var(--paper);overflow-y:auto;animation:slide .5s var(--ease)}
+@keyframes fade{from{opacity:0}}
+@keyframes slide{from{transform:translateX(60px);opacity:0}}
+.sheet-top{position:relative;aspect-ratio:16/8;overflow:hidden}
+.sheet-top svg{width:100%;height:100%}
+.close{position:absolute;right:1rem;top:1rem;width:44px;height:44px;border-radius:50%;background:rgba(255,248,234,.95);font-size:1.3rem;z-index:2}
+.sheet-in{padding:1.8rem clamp(1.3rem,4vw,2.6rem) 3rem}
+.crumb{display:flex;flex-wrap:wrap;gap:.4rem;font-size:.8rem;color:var(--ink-2);margin-bottom:.8rem}
+.crumb button{color:var(--zc);font-weight:600}
+.sheet h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+.sheet .sum{color:var(--ink-2);margin:.8rem 0 1.6rem;font-size:1.02rem}
+.video{aspect-ratio:16/9;border-radius:14px;background:#14201a;display:grid;place-items:center;color:#fff;margin-bottom:1.6rem;position:relative;overflow:hidden}
+.video .play{width:76px;height:76px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:var(--ink);font-size:1.6rem;box-shadow:0 0 0 12px rgba(217,164,65,.2)}
+.video small{position:absolute;bottom:.8rem;left:1rem;opacity:.6;font-size:.75rem}
+.acc{border-top:1px solid var(--line)}
+.acc:last-child{border-bottom:1px solid var(--line)}
+.acc>button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;text-align:left;font-weight:600;font-size:1.02rem}
+.acc>button span{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .3s}
+.acc.open>button span{transform:rotate(45deg);background:var(--zc);color:#fff;border-color:var(--zc)}
+.acc .ac-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.acc.open .ac-body{grid-template-rows:1fr}
+.acc .ac-body>div{overflow:hidden;color:var(--ink-2);font-size:.95rem}
+.acc .ac-body p{padding-bottom:1.1rem}
+.sheet-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:2rem}
+.sheet-nav button{padding:.8rem 1.1rem;border-radius:12px;border:1px solid var(--line);font-size:.88rem;flex:1;text-align:left}
+.sheet-nav button:last-child{text-align:right}
+.sheet-nav button:hover{border-color:var(--zc)}
+.sheet-nav small{display:block;color:var(--ink-2);font-size:.72rem}
+
+/* ===== Hiệu ứng xuất hiện ===== */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ===== Điều hướng ===== -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo"><i>H</i>Hồn Quê</a>
+    <ul id="menu">
+      <li><a href="#gioi-thieu">Giới thiệu</a></li>
+      <li><a href="#ban-do">Bản đồ</a></li>
+      <li><a href="#khu-a">Khu A</a></li>
+      <li><a href="#khu-b">Khu B</a></li>
+      <li><a href="#khu-c">Khu C</a></li>
+      <li><a href="#khu-d">Khu D</a></li>
+      <li><a href="#do-vui">Đố vui</a></li>
+      <li><a href="#kham-pha">Khám phá</a></li>
+    </ul>
+    <a href="#ban-do" class="cta">Bắt đầu hành trình</a>
+    <button class="burger" id="burger" aria-label="Mở menu">☰</button>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero" id="top">
+  <div class="sky"></div>
+  <div class="sun" data-speed="0.15"></div>
+  <svg class="birds" width="120" height="40" viewBox="0 0 120 40" fill="none" stroke="#2a1d18" stroke-width="2" stroke-linecap="round"><path d="M5 20q7-8 14 0q7-8 14 0"/><path d="M50 8q5-6 10 0q5-6 10 0"/><path d="M85 26q4-5 8 0q4-5 8 0"/></svg>
+  <svg class="layer" data-speed="0.08" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" style="height:78%"><path fill="#7a4a3a" opacity=".55" d="M0 300 L120 210 L230 260 L360 150 L480 240 L600 170 L720 250 L860 130 L1000 230 L1120 170 L1260 250 L1440 190 V520 H0Z"/></svg>
+  <div class="mist" style="bottom:42%" data-speed="0.12"></div>
+  <svg class="layer" data-speed="0.18" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" style="height:62%"><path fill="#4b3b3a" opacity=".85" d="M0 330 Q140 240 260 300 T520 270 Q640 200 760 280 T1020 250 Q1160 190 1300 270 T1440 260 V520 H0Z"/>
+    <!-- Chùa trên đỉnh núi -->
+    <g transform="translate(1030 196)" fill="#2b2222"><rect x="-6" y="0" width="12" height="40"/><path d="M-30 6 Q0 -8 30 6 L22 10 H-22Z"/><path d="M-24 20 Q0 8 24 20 L18 24 H-18Z"/><path d="M-18 -8 Q0 -20 18 -8 L12 -4 H-12Z"/></g></svg>
+  <svg class="layer" data-speed="0.3" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" style="height:46%"><path fill="#2c3a32" d="M0 360 Q180 290 360 340 T720 330 Q900 270 1080 330 T1440 310 V520 H0Z"/>
+    <!-- Dòng sông -->
+    <path fill="#e8a85a" opacity=".55" d="M560 520 Q660 440 760 420 Q900 395 1000 360 Q930 410 860 430 Q760 460 720 520Z"/>
+    <g fill="#1d2924"><circle cx="140" cy="330" r="34"/><circle cx="185" cy="318" r="42"/><rect x="178" y="330" width="6" height="40"/><circle cx="1300" cy="300" r="30"/><circle cx="1340" cy="292" r="38"/></g></svg>
+  <svg class="layer" data-speed="0.45" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" style="height:30%"><path fill="#16201b" d="M0 420 Q240 360 480 410 T960 400 Q1200 350 1440 400 V520 H0Z"/>
+    <!-- Mái nhà làng -->
+    <g fill="#16201b"><path d="M250 400 L300 360 L350 400Z"/><path d="M330 405 L370 375 L410 405Z"/><path d="M1080 395 L1140 350 L1200 395Z"/></g>
+    <!-- Lũy tre -->
+    <g stroke="#16201b" stroke-width="3" fill="none"><path d="M600 410 Q596 340 610 300"/><path d="M620 410 Q625 330 650 290"/><path d="M640 410 Q650 350 680 316"/></g></svg>
+
+  <div class="hero-content">
+    <div class="wrap">
+      <p class="eyebrow rv">Dự án di sản văn hóa số</p>
+      <h1 class="rv">Hồn <em>Quê</em></h1>
+      <p class="lead rv">Một miền quê thu nhỏ trong vài cú chạm: dấu tích xưa, rừng xanh, làng nghề và những công trình gắn với lịch sử vùng đất. Bấm chuột là tới nơi Sơn muốn tìm.</p>
+      <div class="hero-actions rv">
+        <a href="#ban-do" class="btn btn-gold">Mở bản đồ 4 khu →</a>
+        <a href="#gioi-thieu" class="btn btn-ghost">▶ Xem giới thiệu</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">Lướt xuống<span></span></div>
+</header>
+
+<!-- ===== Số liệu ===== -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b data-count="4">0</b><span>Khu trải nghiệm</span></div>
+    <div class="stat"><b data-count="15">0</b><span>Chuyên mục khám phá</span></div>
+    <div class="stat"><b data-count="40">0</b><span>Nội dung số hóa</span></div>
+    <div class="stat"><b data-count="3">0</b><span>Cấp thư mục, 1 cú chạm</span></div>
+  </div>
+</div>
+
+<!-- ===== Giới thiệu ===== -->
+<section class="intro" id="gioi-thieu">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow rv">Giới thiệu</p>
+      <h2 class="rv">Giữ hồn quê<br>bằng ngôn ngữ số</h2>
+      <p class="rv">“Hồn Quê” số hóa cảnh quan, con người và nếp sống của vùng đất thành một bảo tàng mở. Mọi nội dung được sắp theo ba cấp: thư mục lớn, thư mục con và nội dung chi tiết, để người xem tìm đúng thứ mình cần mà không bị lạc.</p>
+      <p class="rv">Bốn khu được kết nối bằng một bản đồ tương tác. Chọn một khu, cảnh quan sẽ chuyển theo, rồi đi sâu vào từng câu chuyện.</p>
+      <p class="quote rv">“Đi khắp bốn phương, vẫn nhớ một miền quê.”</p>
+    </div>
+    <div class="intro-art rv" id="introArt"></div>
+  </div>
+</section>
+
+<!-- ===== Bản đồ ===== -->
+<section class="mapsec" id="ban-do">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow rv">Bản đồ tương tác</p><h2 class="rv">Chọn một khu<br>để bắt đầu</h2></div>
+      <p class="rv">Bấm vào từng vùng trên bản đồ. Cảnh quan bên phải đổi theo và hiện danh mục của khu đó.</p>
+    </div>
+    <div class="map-grid">
+      <div class="map-box rv" id="mapBox"></div>
+      <aside class="panel rv">
+        <div class="panel-scene" id="panelScene"></div>
+        <div class="panel-body">
+          <p class="eyebrow" id="pTag" style="color:var(--zc)"></p>
+          <h3 id="pName"></h3>
+          <p id="pIntro"></p>
+          <ul class="panel-list" id="pList"></ul>
+          <a class="btn" id="pGo" href="#">Vào khu này →</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4 khu (render bằng JS) ===== -->
+<main id="zones"></main>
+
+<!-- ===== Trò chơi đố vui (Khu bảo tồn Đồng Nai) ===== -->
+<section class="quiz" id="do-vui">
+  <div class="wrap">
+    <div class="quiz-head">
+      <div><p class="eyebrow rv">Trò chơi</p><h2 class="rv">Đố vui<br>rừng xanh Đồng Nai</h2></div>
+      <p class="rv">Thử hiểu biết về di tích lịch sử và động vật, cây quý hiếm của Khu Bảo tồn thiên nhiên – văn hóa Đồng Nai. Trả lời nhanh để được điểm thưởng.</p>
+    </div>
+    <div class="qcard rv" id="qcard" aria-live="polite"></div>
+    <p class="qsrc">Nội dung câu hỏi tổng hợp từ báo Sài Gòn Giải Phóng, Nhân Dân, Pháp Luật Việt Nam, Tạp chí KH&amp;CN Lâm nghiệp.</p>
+  </div>
+</section>
+
+<!-- ===== Khám phá thêm ===== -->
+<section class="explore" id="kham-pha">
+  <div class="wrap">
+    <p class="eyebrow rv">Khám phá thêm</p>
+    <h2 class="rv">Đơn giản và thuận tiện</h2>
+    <div class="flow rv"><b>Thư mục lớn</b>→<b>Thư mục con</b>→<b>Nội dung chi tiết</b></div>
+    <form class="search rv" id="searchForm">
+      <span aria-hidden="true">⌕</span>
+      <input id="q" type="search" placeholder="Tìm: cây quý hiếm, làng nghề, thủy điện…" aria-label="Tìm nội dung">
+      <button type="submit">Tìm</button>
+    </form>
+    <div class="chips rv" id="chips"></div>
+    <div class="results" id="results"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="#top" class="logo" style="color:var(--paper)"><i>H</i>Hồn Quê</a>
+      <p style="margin-top:1rem;max-width:38ch">Dự án di sản văn hóa số. Lưu giữ cảnh quan, làng nghề và ký ức của vùng đất cho thế hệ sau.</p>
+    </div>
+    <div><h4>Các khu</h4><ul id="footZones"></ul></div>
+    <div><h4>Liên hệ</h4><ul><li>Địa chỉ: (cập nhật)</li><li>Hotline: (cập nhật)</li><li>Email: (cập nhật)</li></ul></div>
+    <p class="copy">© 2026 Hồn Quê – Di sản văn hóa số.</p>
+  </div>
+</footer>
+
+<!-- ===== Modal chi tiết ===== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="bg" data-close></div>
+  <div class="sheet" id="sheet">
+    <div class="sheet-top" id="mScene"><button class="close" data-close aria-label="Đóng">✕</button></div>
+    <div class="sheet-in">
+      <div class="crumb" id="mCrumb"></div>
+      <h2 id="mTitle"></h2>
+      <p class="sum" id="mSum"></p>
+      <div id="mMedia"></div>
+      <div id="mAcc"></div>
+      <div class="sheet-nav" id="mNav"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   1. DỮ LIỆU NỘI DUNG — Sơn chỉ cần sửa ở đây
+   Cấu trúc: khu (thư mục lớn) → items (thư mục con) → children (nội dung chi tiết)
+   ========================================================= */
+const ZONES = [
+  {
+    id: 'a', code: 'A', name: 'Dấu Chân Cổ', tag: 'Ký ức & trải nghiệm', color: '#c0582f', scene: 'ancient',
+    intro: 'Lần theo dấu tích xưa của vùng đất qua thước phim, tư liệu và những tour trải nghiệm tận nơi.',
+    items: [
+      { id: 'clip', title: 'Clip giới thiệu', icon: 'film', type: 'Video', video: true,
+        summary: 'Vài phút để thấy toàn cảnh vùng đất: con người, cảnh sắc và nhịp sống thường ngày.',
+        children: [
+          { title: 'Toàn cảnh từ trên cao', text: 'Góc quay flycam bao quát làng, sông và dãy núi phía xa.' },
+          { title: 'Một ngày ở làng', text: 'Từ phiên chợ sớm đến bữa cơm chiều bên hiên nhà.' }
+        ] },
+      { id: 'vdo', title: 'Video tư liệu', icon: 'play', type: 'Video', video: true,
+        summary: 'Kho video phỏng vấn người cao tuổi, nghệ nhân và tư liệu về các lễ hội truyền thống.',
+        children: [
+          { title: 'Lời kể của các cụ', text: 'Những câu chuyện về làng xưa được ghi lại trước khi bị lãng quên.' },
+          { title: 'Lễ hội đầu năm', text: 'Nghi thức, trò chơi dân gian và không khí ngày hội.' }
+        ] },
+      { id: 'dulich', title: 'Du lịch trải nghiệm', icon: 'map', type: 'Tour',
+        summary: 'Các tuyến tham quan gợi ý theo nửa ngày, một ngày hoặc hai ngày một đêm.',
+        children: [
+          { title: 'Tuyến nửa ngày', text: 'Cổng làng → đình làng → giếng cổ → chợ quê.' },
+          { title: 'Tuyến một ngày', text: 'Kết hợp tham quan Khu A và làng nghề Khu C, ăn trưa món quê.' },
+          { title: 'Tuyến hai ngày một đêm', text: 'Ngủ nhà dân, sáng sớm vào rừng (Khu B), chiều thăm Trấn Sơn (Khu D).' }
+        ] },
+      { id: 'thucte', title: 'Trải nghiệm thực tế', icon: 'hand', type: 'Hoạt động', wide: true,
+        summary: 'Tự tay làm việc nhà nông, chơi trò dân gian và nghe kể chuyện bên bếp lửa.',
+        children: [
+          { title: 'Một ngày làm nông dân', text: 'Cấy lúa, bắt cá đồng, chăn trâu cùng người dân địa phương.' },
+          { title: 'Trò chơi dân gian', text: 'Kéo co, đi cà kheo, thả diều cho cả gia đình.' }
+        ] }
+    ]
+  },
+  {
+    id: 'b', code: 'B', name: 'Rừng Xanh', tag: 'Thiên nhiên & thư viện sống', color: '#2f5d3a', scene: 'forest',
+    intro: 'Một lá phổi xanh với hệ sinh thái phong phú, kèm thư viện số về cây quý và động vật trong rừng.',
+    items: [
+      { id: 'netdep', title: 'Nét đẹp vùng xanh', icon: 'leaf', type: 'Thư viện ảnh',
+        summary: 'Bộ sưu tập ảnh rừng theo mùa: mùa hoa, mùa nước và mùa lá đổi màu.',
+        children: [
+          { title: 'Rừng mùa mưa', text: 'Suối đầy nước, thác trắng xóa, rêu phủ xanh các tảng đá.' },
+          { title: 'Rừng mùa khô', text: 'Thảm lá vàng, nắng xuyên tán cây, thích hợp đi bộ đường dài.' }
+        ] },
+      { id: 'thongtin', title: 'Thông tin khám phá', icon: 'compass', type: 'Hướng dẫn',
+        summary: 'Bản đồ đường mòn, mức độ khó, thời gian đi và những lưu ý an toàn khi vào rừng.',
+        children: [
+          { title: 'Đường mòn ngắn (dễ)', text: 'Phù hợp gia đình có trẻ nhỏ, có biển chỉ dẫn suốt tuyến.' },
+          { title: 'Đường mòn dài (khó)', text: 'Cần đi cùng hướng dẫn viên, mang giày leo núi và nước uống.' },
+          { title: 'Lưu ý an toàn', text: 'Không đốt lửa, không hái cây, mang rác ra khỏi rừng.' }
+        ] },
+      { id: 'vhdl', title: 'Văn hóa du lịch', icon: 'temple', type: 'Bài viết',
+        summary: 'Ứng xử văn minh khi tham quan và những tín ngưỡng gắn với rừng của người dân địa phương.',
+        children: [
+          { title: 'Tục thờ thần rừng', text: 'Niềm tin của người dân về việc giữ rừng, giữ nguồn nước.' },
+          { title: 'Quy tắc của du khách', text: 'Đi đúng đường mòn, giữ yên lặng, tôn trọng không gian tâm linh.' }
+        ] },
+      { id: 'thuvien', title: 'Thư viện cây quý hiếm', icon: 'book', type: 'Thư viện', wide: true,
+        summary: 'Tra cứu các loài cây quý và động vật trong khu rừng: đặc điểm, nơi sống, mức độ cần bảo tồn.',
+        children: [
+          { title: 'Các loại cây quý hiếm', text: 'Danh mục cây gỗ quý, cây thuốc và cây cổ thụ có tuổi đời lâu năm trong khu vực (cập nhật theo khảo sát thực tế).' },
+          { title: 'Thông tin cây / con', text: 'Mỗi loài có thẻ thông tin: tên thường gọi, tên khoa học, đặc điểm nhận dạng, ảnh minh họa.' },
+          { title: 'Góc bảo tồn', text: 'Các hoạt động ươm cây, trồng rừng mà du khách có thể tham gia.' }
+        ] }
+    ]
+  },
+  {
+    id: 'c', code: 'C', name: 'Hồn Quê Trong Tay Mẹ', tag: 'Làng nghề & ẩm thực', color: '#d9a441', scene: 'village',
+    intro: 'Nơi nghề truyền thống còn sống trong từng đôi tay, và mùi vị quê nhà còn ở trong từng món ăn.',
+    items: [
+      { id: 'langnghe', title: 'Văn hóa làng nghề truyền thống', icon: 'pot', type: 'Làng nghề', wide: true,
+        summary: 'Gặp nghệ nhân, xem quy trình làm ra sản phẩm và nghe câu chuyện của từng nghề.',
+        children: [
+          { title: 'Nghề gốm', text: 'Nhào đất, chuốt gốm trên bàn xoay, nung lò củi.' },
+          { title: 'Nghề dệt', text: 'Khung cửi gỗ, sợi nhuộm màu tự nhiên từ lá và vỏ cây.' },
+          { title: 'Nghề đan lát', text: 'Tre, mây được chẻ, vót, đan thành rổ, rá, nón.' }
+        ] },
+      { id: 'thamquan', title: 'Tham quan địa điểm', icon: 'pin', type: 'Địa điểm',
+        summary: 'Những điểm dừng chân nên ghé: nhà cổ, chợ quê, bến sông, cánh đồng lúa.',
+        children: [
+          { title: 'Nhà cổ', text: 'Kiến trúc nhà gỗ ba gian, sân gạch, giếng nước.' },
+          { title: 'Bến sông chiều', text: 'Ngắm hoàng hôn, đi thuyền dọc sông.' }
+        ] },
+      { id: 'amthuc', title: 'Nhà hàng ẩm thực', icon: 'bowl', type: 'Ẩm thực',
+        summary: 'Mâm cơm quê nấu theo mùa, đặc sản địa phương và góc trà chiều.',
+        children: [
+          { title: 'Mâm cơm quê', text: 'Cá kho tộ, canh rau vườn, cà pháo, cơm nồi đất.' },
+          { title: 'Đặc sản mang về', text: 'Bánh truyền thống, mắm, mật ong rừng (cập nhật theo địa phương).' }
+        ] },
+      { id: 'kyniem', title: 'Xây dựng kỷ niệm', icon: 'heart', type: 'Trải nghiệm',
+        summary: 'Tự tay làm một món đồ gốm, đan một chiếc giỏ hay chụp ảnh áo bà ba mang về làm kỷ niệm.',
+        children: [
+          { title: 'Workshop làm gốm', text: 'Khoảng 90 phút, sản phẩm được nung và gửi về sau.' },
+          { title: 'Góc chụp ảnh', text: 'Trang phục truyền thống, xe đạp cũ, nón lá.' }
+        ] }
+    ]
+  },
+  {
+    id: 'd', code: 'D', name: 'Trấn Sơn', tag: 'Tâm linh & lịch sử', color: '#6b3f6e', scene: 'dam',
+    intro: 'Ngôi chùa trên núi, nhà máy thủy điện giữa thung lũng và những trang lịch sử của vùng đất.',
+    items: [
+      { id: 'chua', title: 'Trấn Sơn – Chùa Sơn', icon: 'temple', type: 'Tâm linh',
+        summary: 'Ngôi chùa nằm lưng chừng núi, nơi người dân lên lễ đầu năm và ngắm toàn cảnh thung lũng.',
+        children: [
+          { title: 'Kiến trúc chùa', text: 'Cổng tam quan, chính điện, tháp chuông (cập nhật theo tư liệu).' },
+          { title: 'Lễ hội chùa', text: 'Thời gian và nghi thức các lễ lớn trong năm.' }
+        ] },
+      { id: 'thuydien', title: 'Nhà máy thủy điện', icon: 'bolt', type: 'Công trình',
+        summary: 'Công trình thủy điện giữa núi rừng: quá trình xây dựng và vai trò với đời sống người dân.',
+        children: [
+          { title: 'Quá trình xây dựng', text: 'Các mốc thời gian chính của công trình (cần kiểm tra số liệu).' },
+          { title: 'Tham quan lòng hồ', text: 'Điểm ngắm cảnh hồ chứa, quy định khu vực được phép tham quan.' }
+        ] },
+      { id: 'lichsu', title: 'Bối cảnh và lịch sử', icon: 'scroll', type: 'Lịch sử', wide: true,
+        summary: 'Dòng thời gian của vùng đất: từ buổi đầu khai hoang đến hôm nay.',
+        children: [
+          { title: 'Thời khai hoang', text: 'Những lớp cư dân đầu tiên đến lập làng bên sông.' },
+          { title: 'Những đổi thay', text: 'Làng quê qua các giai đoạn phát triển.' },
+          { title: 'Hôm nay', text: 'Bảo tồn di sản gắn với phát triển du lịch cộng đồng.' }
+        ] }
+    ]
+  }
+];
+
+/* =========================================================
+   2. MINH HỌA SVG (không cần ảnh ngoài, tải nhanh)
+   ========================================================= */
+const SCENES = {
+  ancient: (id) => `
+  <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sa${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4c58a"/><stop offset=".6" stop-color="#e48a55"/><stop offset="1" stop-color="#b8553a"/></linearGradient></defs>
+    <rect width="600" height="750" fill="url(#sa${id})"/>
+    <circle cx="420" cy="250" r="90" fill="#fde3b0" opacity=".85"/>
+    <path d="M0 430 L120 330 L230 390 L340 300 L460 380 L600 320 V750 H0Z" fill="#a24a34" opacity=".6"/>
+    <path d="M0 500 Q150 440 300 480 T600 460 V750 H0Z" fill="#7a3426"/>
+    <!-- Cổng tam quan -->
+    <g fill="#3a1f18">
+      <rect x="190" y="470" width="220" height="16"/>
+      <rect x="205" y="486" width="22" height="160"/><rect x="373" y="486" width="22" height="160"/>
+      <rect x="275" y="500" width="50" height="146" fill="#2a1612"/>
+      <path d="M160 474 Q300 420 440 474 L420 482 Q300 440 180 482Z"/>
+      <path d="M240 440 Q300 400 360 440 L350 446 Q300 418 250 446Z"/>
+      <rect x="292" y="414" width="16" height="30"/>
+    </g>
+    <!-- Cây đa -->
+    <g fill="#3a1f18"><rect x="490" y="500" width="22" height="160"/><circle cx="500" cy="470" r="60"/><circle cx="460" cy="500" r="40"/><circle cx="545" cy="500" r="42"/></g>
+    <path d="M0 640 H600 V750 H0Z" fill="#2a1612"/>
+  </svg>`,
+  forest: (id) => `
+  <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sf${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe3c4"/><stop offset="1" stop-color="#7fae7c"/></linearGradient></defs>
+    <rect width="600" height="750" fill="url(#sf${id})"/>
+    <path d="M0 380 L100 260 L200 340 L320 220 L440 320 L600 240 V750 H0Z" fill="#5b8a5f" opacity=".7"/>
+    <!-- Thác -->
+    <path d="M300 300 L330 300 L345 620 L285 620Z" fill="#eaf4f0" opacity=".9"/>
+    <ellipse cx="315" cy="630" rx="80" ry="18" fill="#eaf4f0" opacity=".7"/>
+    ${[...Array(9)].map((_,i)=>{const x=i*75-10,h=180+((i*53)%90);return `<path d="M${x} 640 L${x+40} ${640-h} L${x+80} 640Z" fill="${i%2?'#2f5d3a':'#244a2e'}"/>`}).join('')}
+    ${[...Array(7)].map((_,i)=>{const x=i*95+20,y=560+((i*37)%40);return `<circle cx="${x}" cy="${y}" r="${45+(i%3)*10}" fill="#1c3a24"/>`}).join('')}
+    <path d="M0 650 H600 V750 H0Z" fill="#14281a"/>
+    <g fill="none" stroke="#14281a" stroke-width="2.5" stroke-linecap="round"><path d="M120 180q8-9 16 0q8-9 16 0"/><path d="M180 150q6-7 12 0q6-7 12 0"/></g>
+  </svg>`,
+  village: (id) => `
+  <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sv${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbe9c3"/><stop offset="1" stop-color="#eac070"/></linearGradient></defs>
+    <rect width="600" height="750" fill="url(#sv${id})"/>
+    <circle cx="150" cy="200" r="70" fill="#fff4d6"/>
+    <!-- Ruộng bậc thang -->
+    ${[...Array(6)].map((_,i)=>`<path d="M0 ${340+i*55} Q300 ${300+i*55} 600 ${350+i*55} V750 H0Z" fill="${['#c9a548','#b79239','#a2812e','#8e7027','#7a601f','#5f4a18'][i]}"/>`).join('')}
+    <!-- Nhà tranh -->
+    <g transform="translate(330 380)"><path d="M-80 60 L0 -10 L80 60Z" fill="#6b4a1c"/><rect x="-60" y="58" width="120" height="70" fill="#f0d9a8"/><rect x="-14" y="80" width="28" height="48" fill="#5a3b14"/><path d="M-90 64 L0 -18 L90 64" fill="none" stroke="#4a3210" stroke-width="6"/></g>
+    <!-- Lũy tre -->
+    <g stroke="#3f5a2a" stroke-width="5" fill="none" stroke-linecap="round"><path d="M480 560 Q470 420 500 330"/><path d="M500 560 Q510 400 545 340"/><path d="M520 560 Q540 430 580 380"/></g>
+    <g fill="#4f6e33"><ellipse cx="505" cy="330" rx="40" ry="14" transform="rotate(-30 505 330)"/><ellipse cx="550" cy="340" rx="40" ry="14" transform="rotate(20 550 340)"/><ellipse cx="580" cy="380" rx="34" ry="12"/></g>
+    <!-- Nón lá -->
+    <path d="M120 620 L170 580 L220 620Z" fill="#f4e3b6" stroke="#8a6a2a" stroke-width="2"/>
+  </svg>`,
+  dam: (id) => `
+  <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="sd${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d1f3a"/><stop offset=".55" stop-color="#7a4a78"/><stop offset="1" stop-color="#d79a8a"/></linearGradient></defs>
+    <rect width="600" height="750" fill="url(#sd${id})"/>
+    ${[...Array(40)].map((_,i)=>`<circle cx="${(i*137)%600}" cy="${(i*71)%260}" r="${i%3?1:1.8}" fill="#fff" opacity=".7"/>`).join('')}
+    <path d="M0 420 L140 250 L260 360 L380 220 L520 340 L600 300 V750 H0Z" fill="#3e2846"/>
+    <!-- Chùa trên núi -->
+    <g transform="translate(380 214)" fill="#1e1424"><rect x="-8" y="0" width="16" height="44"/><path d="M-36 8 Q0 -10 36 8 L26 13 H-26Z"/><path d="M-28 26 Q0 12 28 26 L20 30 H-20Z"/><path d="M-20 -10 Q0 -24 20 -10 L14 -6 H-14Z"/></g>
+    <!-- Hồ & đập -->
+    <path d="M0 470 H600 V560 H0Z" fill="#8fb4c7" opacity=".55"/>
+    <path d="M60 540 H540 L520 650 H80Z" fill="#cfc6cf"/>
+    ${[...Array(6)].map((_,i)=>`<rect x="${120+i*65}" y="560" width="22" height="80" fill="#a99fac"/>`).join('')}
+    <path d="M150 650 Q300 700 450 650 V750 H150Z" fill="#b8d4e0" opacity=".8"/>
+    <path d="M0 660 Q150 640 160 750 H0Z M600 660 Q450 640 440 750 H600Z" fill="#241830"/>
+  </svg>`
+};
+
+/* Bộ icon nét đơn giản */
+const ICONS = {
+  film:'<path d="M4 5h16v14H4zM8 5v14M16 5v14M4 9h4M4 15h4M16 9h4M16 15h4"/>',
+  play:'<circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4z"/>',
+  map:'<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/>',
+  hand:'<path d="M8 13V5a1.5 1.5 0 013 0v6M11 10V4a1.5 1.5 0 013 0v7M14 10V6a1.5 1.5 0 013 0v7c0 4-3 7-6 7s-5-2-6-4l-2-4a1.5 1.5 0 012.5-1.5L8 13"/>',
+  leaf:'<path d="M5 19C5 10 11 4 20 4c0 9-6 15-15 15zM5 19l8-8"/>',
+  compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+  temple:'<path d="M3 9q9-6 18 0M5 9v10h14V9M2 19h20M10 19v-5h4v5M7 6q5-4 10 0"/>',
+  book:'<path d="M4 4h6a2 2 0 012 2v14a2 2 0 00-2-2H4zM20 4h-6a2 2 0 00-2 2v14a2 2 0 012-2h6z"/>',
+  pot:'<path d="M8 4h8M9 4c0 3-4 4-4 9a7 7 0 0014 0c0-5-4-6-4-9"/>',
+  pin:'<path d="M12 21s7-6 7-12a7 7 0 00-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',
+  bowl:'<path d="M3 11h18a9 9 0 01-18 0zM8 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/>',
+  heart:'<path d="M12 20s-8-5-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 9c0 6-8 11-8 11z"/>',
+  bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+  scroll:'<path d="M6 4h12v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6M6 4a2 2 0 00-2 2h4M9 9h6M9 13h6"/>'
+};
+const icon = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]||ICONS.pin}</svg>`;
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* =========================================================
+   3. RENDER CÁC KHU
+   ========================================================= */
+function renderZones() {
+  $('#zones').innerHTML = ZONES.map((z, zi) => `
+    <section class="zsec ${zi % 2 ? 'flip' : ''}" id="khu-${z.id}" style="--zc:${z.color}">
+      <div class="wrap">
+        <div class="zhead rv">
+          <div class="znum">${z.code}</div>
+          <div><p class="eyebrow" style="color:${z.color}">Khu ${z.code} · ${esc(z.tag)}</p>
+          <h2>${esc(z.name.split(' ').slice(0, -1).join(' ') || '')} <span>${esc(z.name.split(' ').slice(-1))}</span></h2>
+          <p>${esc(z.intro)}</p></div>
+        </div>
+        <div class="zbody">
+          <div class="zart rv">${SCENES[z.scene]('z' + z.id)}<span class="badge">${z.items.length} chuyên mục</span></div>
+          <div class="cards">
+            ${z.items.map((it, ii) => `
+              <button class="card rv ${it.wide ? 'wide' : ''}" style="transition-delay:${ii * 80}ms" data-open="${z.id}:${it.id}">
+                <span class="ic">${icon(it.icon)}</span>
+                <span class="tp">${esc(it.type)}</span>
+                <h3>${esc(it.title)}</h3>
+                <p>${esc(it.summary)}</p>
+                <span class="more">${it.children.length} nội dung <i>→</i></span>
+              </button>`).join('')}
+          </div>
+        </div>
+      </div>
+    </section>`).join('');
+
+  $('#footZones').innerHTML = ZONES.map(z => `<li><button data-go="${z.id}">Khu ${z.code}: ${esc(z.name)}</button></li>`).join('');
+}
+
+/* =========================================================
+   4. BẢN ĐỒ TƯƠNG TÁC + CHUYỂN CẢNH
+   ========================================================= */
+function renderMap() {
+  // Vùng của 4 khu trên bản đồ (path + vị trí ghim)
+  const shapes = {
+    a: { d: 'M60 300 Q40 200 140 170 Q240 150 300 220 Q330 300 280 370 Q200 430 110 400 Q60 370 60 300Z', pin: [180, 290] },
+    b: { d: 'M320 80 Q420 30 540 70 Q620 110 600 200 Q570 260 470 250 Q360 250 320 190 Q300 130 320 80Z', pin: [460, 150] },
+    c: { d: 'M330 300 Q380 260 480 280 Q580 300 590 380 Q590 470 490 500 Q380 520 330 450 Q300 380 330 300Z', pin: [460, 390] },
+    d: { d: 'M650 140 Q760 90 880 150 Q950 220 920 330 Q880 440 760 440 Q660 420 640 320 Q620 220 650 140Z', pin: [780, 280] }
+  };
+  $('#mapBox').innerHTML = `
+  <svg viewBox="0 0 980 560" role="group" aria-label="Bản đồ 4 khu">
+    <defs><pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#b9a983"/></pattern></defs>
+    <rect width="980" height="560" fill="#e6dbc2"/><rect width="980" height="560" fill="url(#dots)" opacity=".6"/>
+    <!-- Sông -->
+    <path d="M-10 470 Q160 500 300 470 Q440 430 600 470 Q700 495 640 540 Q610 560 620 580" fill="none" stroke="#9cc0cf" stroke-width="26" stroke-linecap="round"/>
+    <path d="M600 470 Q640 400 640 340" fill="none" stroke="#9cc0cf" stroke-width="14" stroke-linecap="round"/>
+    <!-- Đường đi -->
+    <path d="M180 290 C 300 260, 360 180, 460 150 M460 150 C 470 260, 460 300, 460 390 M460 390 C 600 380, 680 320, 780 280" fill="none" stroke="#8a7650" stroke-width="2.5" stroke-dasharray="6 8"/>
+    ${ZONES.map(z => {
+      const s = shapes[z.id];
+      return `<g class="zone" data-zone="${z.id}" tabindex="0" role="button" aria-label="Khu ${z.code}: ${esc(z.name)}">
+        <path d="${s.d}" fill="${z.color}" opacity=".88"/>
+        <path d="${s.d}" fill="none" stroke="#fff8ea" stroke-width="3" stroke-dasharray="2 7" opacity=".7"/>
+        <circle class="ring" cx="${s.pin[0]}" cy="${s.pin[1]}" r="16" fill="none" stroke="#fff8ea" stroke-width="2"/>
+        <g class="pin"><circle cx="${s.pin[0]}" cy="${s.pin[1]}" r="22" fill="#fff8ea"/>
+        <text x="${s.pin[0]}" y="${s.pin[1] + 7}" text-anchor="middle" font-family="Playfair Display" font-weight="800" font-size="21" fill="${z.color}">${z.code}</text></g>
+        <text x="${s.pin[0]}" y="${s.pin[1] + 52}" text-anchor="middle" font-family="Be Vietnam Pro" font-weight="600" font-size="15" fill="#fff8ea">${esc(z.name)}</text>
+      </g>`;
+    }).join('')}
+  </svg><span class="map-hint">Bấm vào một khu</span>`;
+
+  // Cảnh của panel: render sẵn cả 4, chỉ bật/tắt để có hiệu ứng chuyển cảnh mượt
+  $('#panelScene').innerHTML = ZONES.map(z => `<div class="sc" data-sc="${z.id}">${SCENES[z.scene]('p' + z.id)}</div>`).join('');
+
+  document.querySelectorAll('.zone').forEach(g => {
+    g.addEventListener('click', () => selectZone(g.dataset.zone));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectZone(g.dataset.zone); } });
+  });
+  selectZone('a');
+}
+
+function selectZone(id) {
+  const z = ZONES.find(x => x.id === id);
+  document.querySelectorAll('.zone').forEach(g => g.classList.toggle('active', g.dataset.zone === id));
+  document.querySelectorAll('.sc').forEach(s => s.classList.toggle('on', s.dataset.sc === id));
+  const panel = $('.panel');
+  panel.style.setProperty('--zc', z.color);
+  $('#pTag').textContent = `Khu ${z.code} · ${z.tag}`;
+  $('#pName').textContent = z.name;
+  $('#pIntro').textContent = z.intro;
+  $('#pList').innerHTML = z.items.map(it => `<li><button data-open="${z.id}:${it.id}">${esc(it.title)}</button></li>`).join('');
+  $('#pGo').href = `#khu-${z.id}`;
+  $('#pGo').style.background = z.color;
+}
+
+/* =========================================================
+   5. MODAL CHI TIẾT (Khu → Mục → Nội dung)
+   ========================================================= */
+let lastFocus = null;
+function openItem(zid, iid) {
+  const z = ZONES.find(x => x.id === zid);
+  const idx = z.items.findIndex(x => x.id === iid);
+  const it = z.items[idx];
+  if (!it) return;
+  const sheet = $('#sheet');
+  sheet.style.setProperty('--zc', z.color);
+  $('#mScene').innerHTML = `<button class="close" data-close aria-label="Đóng">✕</button>${SCENES[z.scene]('m' + z.id)}`;
+  $('#mCrumb').innerHTML = `<button data-go="${z.id}">Khu ${z.code}: ${esc(z.name)}</button><span>›</span><span>${esc(it.title)}</span>`;
+  $('#mTitle').textContent = it.title;
+  $('#mSum').textContent = it.summary;
+  // Gắn video thật: thay khối này bằng <iframe src="https://www.youtube.com/embed/ID"> khi đưa lên host riêng
+  $('#mMedia').innerHTML = it.video ? `<div class="video"><span class="play">▶</span><small>Gắn link video YouTube / file MP4 tại đây</small></div>` : '';
+  $('#mAcc').innerHTML = it.children.map((c, i) => `
+    <div class="acc ${i === 0 ? 'open' : ''}">
+      <button aria-expanded="${i === 0}">${esc(c.title)}<span>+</span></button>
+      <div class="ac-body"><div><p>${esc(c.text)}</p></div></div>
+    </div>`).join('');
+  const prev = z.items[idx - 1], next = z.items[idx + 1];
+  $('#mNav').innerHTML = `
+    ${prev ? `<button data-open="${z.id}:${prev.id}"><small>← Trước</small>${esc(prev.title)}</button>` : '<span style="flex:1"></span>'}
+    ${next ? `<button data-open="${z.id}:${next.id}"><small>Tiếp →</small>${esc(next.title)}</button>` : '<span style="flex:1"></span>'}`;
+  lastFocus = lastFocus || document.activeElement;
+  $('#modal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+  sheet.scrollTop = 0;
+  $('.close', sheet).focus();
+}
+function closeModal() {
+  $('#modal').classList.remove('show');
+  document.body.style.overflow = '';
+  if (lastFocus) lastFocus.focus();
+  lastFocus = null;
+}
+
+/* =========================================================
+   6. TÌM KIẾM "KHÁM PHÁ THÊM"
+   ========================================================= */
+const INDEX = ZONES.flatMap(z => z.items.flatMap(it => [
+  { z, it, label: it.title, path: `Khu ${z.code} › ${z.name}`, text: it.title + ' ' + it.summary + ' ' + it.type },
+  ...it.children.map(c => ({ z, it, label: c.title, path: `Khu ${z.code} › ${it.title}`, text: c.title + ' ' + c.text }))
+]));
+const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd');
+
+function search(q) {
+  const key = norm(q.trim());
+  const box = $('#results');
+  if (!key) { box.innerHTML = ''; return; }
+  const hits = INDEX.filter(x => norm(x.text + ' ' + x.path).includes(key)).slice(0, 12);
+  box.innerHTML = hits.length
+    ? hits.map(h => `<button class="res" data-open="${h.z.id}:${h.it.id}"><small>${esc(h.path)}</small><b>${esc(h.label)}</b></button>`).join('')
+    : `<p class="empty">Chưa có nội dung khớp với “${esc(q)}”. Thử từ khóa khác nhé.</p>`;
+}
+function renderChips() {
+  const chips = [
+    { label: 'Thư viện', q: 'thư viện', c: '#3d6f86' },
+    { label: 'Cây quý hiếm', q: 'cây quý', c: '#7fae7c' },
+    { label: 'Chọn Khu D', go: 'd', c: '#d79a8a' },
+    { label: 'VH Làng nghề', q: 'làng nghề', c: '#d9a441' }
+  ];
+  $('#chips').innerHTML = chips.map(ch => `<button class="chip" style="--cc:${ch.c}" ${ch.go ? `data-go="${ch.go}"` : `data-q="${ch.q}"`}>${ch.label}</button>`).join('');
+}
+
+/* =========================================================
+   7. SỰ KIỆN CHUNG, PARALLAX, HIỆU ỨNG
+   ========================================================= */
+document.addEventListener('click', e => {
+  const open = e.target.closest('[data-open]');
+  const go = e.target.closest('[data-go]');
+  const q = e.target.closest('[data-q]');
+  const acc = e.target.closest('.acc > button');
+  if (e.target.closest('[data-close]')) return closeModal();
+  if (open) { const [z, i] = open.dataset.open.split(':'); return openItem(z, i); }
+  if (go) { closeModal(); document.getElementById('khu-' + go.dataset.go).scrollIntoView({ behavior: 'smooth' }); return; }
+  if (q) { $('#q').value = q.dataset.q; search(q.dataset.q); return; }
+  if (acc) { const a = acc.parentElement; a.classList.toggle('open'); acc.setAttribute('aria-expanded', a.classList.contains('open')); }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('#modal').classList.contains('show')) closeModal(); });
+$('#searchForm').addEventListener('submit', e => { e.preventDefault(); search($('#q').value); });
+$('#q').addEventListener('input', e => search(e.target.value));
+
+// Menu mobile
+$('#burger').addEventListener('click', () => $('#nav').classList.toggle('open'));
+$('#menu').addEventListener('click', e => { if (e.target.tagName === 'A') $('#nav').classList.remove('open'); });
+
+// Parallax hero + nav đổi nền khi cuộn
+const layers = [...document.querySelectorAll('[data-speed]')];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let ticking = false;
+addEventListener('scroll', () => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    const y = scrollY;
+    $('#nav').classList.toggle('solid', y > innerHeight * 0.7);
+    if (!reduce && y < innerHeight * 1.2) layers.forEach(l => { l.style.transform = `translateY(${y * l.dataset.speed}px)`; });
+    ticking = false;
+  });
+}, { passive: true });
+
+// Xuất hiện khi cuộn tới + đếm số
+function observe() {
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add('in');
+    io.unobserve(en.target);
+  }), { threshold: .12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  const cio = new IntersectionObserver(entries => entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    const el = en.target, end = +el.dataset.count, t0 = performance.now();
+    const step = (t) => { const p = Math.min((t - t0) / 1200, 1); el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+    cio.unobserve(el);
+  }), { threshold: .5 });
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+}
+
+/* =========================================================
+   8. TRÒ CHƠI ĐỐ VUI — Khu Bảo tồn thiên nhiên – văn hóa Đồng Nai
+   c = vị trí đáp án đúng trong mảng a (0–3). Thêm câu chỉ cần thêm 1 dòng.
+   ========================================================= */
+const QUIZ = [
+  // --- Di tích lịch sử ---
+  { cat: 'ditich', q: 'Trước đây, vùng đất của Khu Bảo tồn thiên nhiên – văn hóa Đồng Nai từng là chiến khu nào?', a: ['Chiến khu Đ', 'Chiến khu R', 'Chiến khu Việt Bắc', 'Chiến khu Dương Minh Châu'], c: 0, why: 'Khu bảo tồn từng là Chiến khu Đ, căn cứ cách mạng thời kháng chiến.' },
+  { cat: 'ditich', q: 'Di tích nào KHÔNG thuộc 3 di tích lịch sử trong Khu bảo tồn?', a: ['Căn cứ Trung ương Cục miền Nam', 'Căn cứ Khu ủy miền Đông', 'Địa đạo Suối Linh', 'Địa đạo Củ Chi'], c: 3, why: 'Ba di tích trong Khu bảo tồn là Căn cứ Trung ương Cục miền Nam, Căn cứ Khu ủy miền Đông và Địa đạo Suối Linh. Địa đạo Củ Chi ở TP.HCM.' },
+  { cat: 'ditich', q: 'Căn cứ Khu ủy miền Đông Nam Bộ được thành lập tháng 2/1961 tại đâu?', a: ['Suối Linh', 'Mã Đà', 'Bà Rịa', 'Củ Chi'], c: 0, why: 'Căn cứ Khu ủy miền Đông Nam Bộ thành lập tháng 2/1961 tại Suối Linh (Vĩnh Cửu, Đồng Nai).' },
+  { cat: 'ditich', q: 'Khu di tích Trung ương Cục miền Nam (Chiến khu Đ) được xếp hạng di tích quốc gia năm nào?', a: ['1995', '2001', '2011', '2020'], c: 1, why: 'Khu di tích Trung ương Cục miền Nam trong Chiến khu Đ được xếp hạng di tích quốc gia năm 2001.' },
+  { cat: 'ditich', q: 'Hằng năm, lễ giỗ chung các liệt sĩ ở Khu di tích Trung ương Cục miền Nam được tổ chức vào ngày nào?', a: ['30/4', '27/7', '21/4', '2/9'], c: 2, why: 'Nhiều năm nay, cứ ngày 21/4 Khu bảo tồn lại tổ chức lễ giỗ chung cho các liệt sĩ tại đây.' },
+  { cat: 'ditich', q: 'Trung ương Cục miền Nam được quyết định thành lập vào ngày nào, thay cho Xứ ủy Nam Bộ?', a: ['23/01/1961', '19/05/1959', '30/04/1975', '02/09/1945'], c: 0, why: 'Ngày 23/01/1961, Hội nghị Trung ương 3 (khóa III) quyết định thành lập Trung ương Cục miền Nam thay cho Xứ ủy Nam Bộ.' },
+  { cat: 'ditich', q: 'Dân tộc nào dưới đây là cư dân bản địa của vùng đất Đồng Nai?', a: ['Người Chơ Ro', 'Người Thái', 'Người Mông', 'Người Chăm'], c: 0, why: 'Đồng Nai là vùng đất của cư dân bản địa người Mạ, Chơ Ro và một phần người Stiêng.' },
+
+  // --- Động vật, cây quý hiếm ---
+  { cat: 'sinhvat', q: 'Loài thú lớn nào có một quần thể hoang dã hơn 20 cá thể đang sống trong Khu bảo tồn?', a: ['Tê giác', 'Voi châu Á', 'Hổ Đông Dương', 'Hươu cao cổ'], c: 1, why: 'Khu bảo tồn đã ghi nhận quần thể voi châu Á hoang dã hơn 20 con, thuộc danh mục loài nguy cấp.' },
+  { cat: 'sinhvat', q: 'Loài linh trưởng quý hiếm nào sống trong Khu bảo tồn?', a: ['Đười ươi', 'Gấu trúc', 'Voọc chà vá chân đen', 'Tinh tinh'], c: 2, why: 'Voọc chà vá chân đen là một trong những loài nguy cấp, quý hiếm được ghi nhận ở đây.' },
+  { cat: 'sinhvat', q: 'Loài bò hoang dã cỡ lớn, có tên trong Sách đỏ, sống ở rừng Đồng Nai là gì?', a: ['Bò Tây Tạng', 'Bò tót', 'Bò rừng bizon', 'Bò sữa'], c: 1, why: 'Bò tót là loài nguy cấp, quý hiếm có trong Khu bảo tồn.' },
+  { cat: 'sinhvat', q: 'Loài chim quý hiếm nào được ghi nhận ở Khu bảo tồn?', a: ['Chim cánh cụt', 'Hồng hạc', 'Đà điểu châu Phi', 'Gà lôi hồng tía'], c: 3, why: 'Gà lôi hồng tía nằm trong nhóm loài nguy cấp, quý hiếm của Khu bảo tồn.' },
+  { cat: 'sinhvat', q: 'Loài khỉ nào sau đây là loài quý hiếm có ở Khu bảo tồn?', a: ['Khỉ đuôi lợn', 'Khỉ mũi hếch', 'Khỉ đột', 'Khỉ Nhật Bản'], c: 0, why: 'Khỉ đuôi lợn là một trong các loài nguy cấp, quý hiếm sống trong rừng Khu bảo tồn.' },
+  { cat: 'sinhvat', q: 'Loài thú có vảy nào thường bị săn bắt trái phép và cần được bảo vệ ở rừng Đồng Nai?', a: ['Rái cá', 'Tê tê', 'Nhím', 'Sóc bay'], c: 1, why: 'Tê tê nằm trong nhóm loài bị đe dọa, thường bị săn bắt trái phép.' },
+  { cat: 'sinhvat', q: 'Cây nào dưới đây là cây gỗ quý thường được nhắc đến trong rừng Đồng Nai?', a: ['Cây bạch đàn', 'Cây keo lai', 'Cây cẩm lai', 'Cây phi lao'], c: 2, why: 'Cẩm lai và gỗ trắc là những cây gỗ quý hiếm trong rừng Đồng Nai. Bạch đàn, keo lai là cây trồng phổ biến.' },
+  { cat: 'sinhvat', q: 'Theo thống kê năm 2025, Khu bảo tồn có hơn bao nhiêu loài động vật?', a: ['180 loài', '500 loài', '1.800 loài', '18.000 loài'], c: 2, why: 'Khu bảo tồn có hơn 1.800 loài động vật, trong đó 141 loài nguy cấp, quý hiếm.' },
+
+  // --- Khu bảo tồn ---
+  { cat: 'baoton', q: 'Khu Dự trữ sinh quyển Đồng Nai được UNESCO công nhận vào năm nào?', a: ['2001', '2011', '2015', '2021'], c: 1, why: 'Ngày 29/6/2011, Khu Dự trữ sinh quyển Đồng Nai được UNESCO công nhận.' },
+  { cat: 'baoton', q: 'Tiền thân của Khu Bảo tồn thiên nhiên – văn hóa Đồng Nai là gì?', a: ['Vườn quốc gia Cát Tiên', 'Khu Dự trữ thiên nhiên Vĩnh Cửu', 'Lâm trường Mã Đà', 'Rừng phòng hộ Xuân Lộc'], c: 1, why: 'Tiền thân là Khu Dự trữ thiên nhiên Vĩnh Cửu, thành lập năm 2003.' },
+  { cat: 'baoton', q: 'Hồ nước lớn nào nằm trong diện tích Khu bảo tồn quản lý?', a: ['Hồ Dầu Tiếng', 'Hồ Tuyền Lâm', 'Hồ Trị An', 'Hồ Thác Bà'], c: 2, why: 'Khu bảo tồn quản lý hơn 100 nghìn ha, gồm cả hơn 32.500 ha mặt nước hồ Trị An.' },
+  { cat: 'baoton', q: 'Khu Bảo tồn thiên nhiên – văn hóa Đồng Nai chính thức được thành lập năm nào?', a: ['1997', '2004', '2011', '2016'], c: 1, why: 'Năm 2004, tỉnh Đồng Nai chính thức thành lập Khu bảo tồn.' },
+  { cat: 'baoton', q: 'Tổng diện tích Khu bảo tồn được giao quản lý (cả rừng và hồ) khoảng bao nhiêu?', a: ['Hơn 1.000 ha', 'Hơn 10.000 ha', 'Hơn 100.000 ha', 'Hơn 1 triệu ha'], c: 2, why: 'Khu bảo tồn được giao quản lý tổng diện tích hơn 100.000 ha.' },
+  { cat: 'baoton', q: 'Đồng Nai là tỉnh có chủ trương đóng cửa rừng sớm nhất cả nước, từ năm nào?', a: ['1997', '2005', '2010', '2018'], c: 0, why: 'Đồng Nai đóng cửa rừng từ năm 1997, nhờ đó công tác bảo vệ rừng được tăng cường sớm.' },
+  { cat: 'baoton', q: 'Khu bảo tồn được Chính phủ đồng ý đề cử danh hiệu khu vực nào?', a: ['Vườn di sản ASEAN', 'Kỳ quan thế giới', 'Công viên địa chất toàn cầu', 'Di sản văn hóa phi vật thể'], c: 0, why: 'Văn phòng Chính phủ đã đồng ý chủ trương đề cử Khu bảo tồn là Vườn di sản ASEAN (AHP).' }
+];
+
+const QTOPICS = [
+  { id: 'all', em: '🌏', name: 'Tổng hợp', note: 'Trộn tất cả chủ đề' },
+  { id: 'ditich', em: '🏛️', name: 'Di tích lịch sử', note: 'Chiến khu Đ, căn cứ cách mạng' },
+  { id: 'sinhvat', em: '🐘', name: 'Động vật & cây quý', note: 'Voi, bò tót, chà vá chân đen…' },
+  { id: 'baoton', em: '🌳', name: 'Khu bảo tồn', note: 'UNESCO, hồ Trị An, lịch sử thành lập' }
+];
+const Q_TIME = 20;      // giây cho mỗi câu
+const Q_COUNT = 10;     // số câu mỗi lượt
+const shuffle = (arr) => { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const store = {
+  get: (k) => { try { return +localStorage.getItem(k) || 0; } catch { return 0; } },
+  set: (k, v) => { try { localStorage.setItem(k, v); } catch { /* bỏ qua nếu trình duyệt chặn */ } }
+};
+
+const game = { topic: 'all', list: [], i: 0, score: 0, streak: 0, best: 0, correct: 0, wrong: [], timer: null, left: Q_TIME, locked: false };
+const qcard = $('#qcard');
+
+function quizStart() {
+  clearInterval(game.timer);
+  qcard.innerHTML = `
+    <h3>Chọn chủ đề</h3>
+    <p class="muted">Mỗi lượt ${Q_COUNT} câu, ${Q_TIME} giây mỗi câu. Đúng 3 câu liên tiếp được thưởng thêm điểm.</p>
+    <div class="topics">
+      ${QTOPICS.map(t => {
+        const n = t.id === 'all' ? QUIZ.length : QUIZ.filter(x => x.cat === t.id).length;
+        return `<button class="topic" data-topic="${t.id}" aria-pressed="${game.topic === t.id}">
+          <span class="em">${t.em}</span><span><b>${t.name}</b><small>${t.note} · ${n} câu</small></span></button>`;
+      }).join('')}
+    </div>
+    <div class="qstart">
+      <span class="muted">Kỷ lục của bạn: <b>${store.get('hq-best')}</b> điểm</span>
+      <button class="qbtn" data-quiz="play">Bắt đầu chơi →</button>
+    </div>`;
+}
+
+function quizPlay() {
+  const pool = game.topic === 'all' ? QUIZ : QUIZ.filter(x => x.cat === game.topic);
+  // Trộn câu hỏi và trộn luôn thứ tự đáp án
+  game.list = shuffle(pool).slice(0, Q_COUNT).map(item => {
+    const order = shuffle([0, 1, 2, 3]);
+    return { ...item, a: order.map(k => item.a[k]), c: order.indexOf(item.c) };
+  });
+  Object.assign(game, { i: 0, score: 0, streak: 0, best: 0, correct: 0, wrong: [] });
+  quizQuestion();
+}
+
+function quizQuestion() {
+  const q = game.list[game.i];
+  const total = game.list.length;
+  const topicName = QTOPICS.find(t => t.id === q.cat).name;
+  game.locked = false;
+  game.left = Q_TIME;
+  qcard.innerHTML = `
+    <div class="qtop">
+      <span class="pill">Câu ${game.i + 1}/${total}</span>
+      <span class="pill streak" ${game.streak < 2 ? 'hidden' : ''}>🔥 Chuỗi ${game.streak}</span>
+      <span class="pill">⭐ ${game.score} điểm</span>
+      <span class="pill" id="qsec">⏱ ${Q_TIME}s</span>
+    </div>
+    <div class="qprog"><i style="width:${(game.i / total) * 100}%"></i></div>
+    <div class="qtime"><i id="qbar" style="width:100%"></i></div>
+    <p class="qcat">${topicName}</p>
+    <p class="qtext">${esc(q.q)}</p>
+    <div class="answers">
+      ${q.a.map((t, k) => `<button class="ans" data-ans="${k}"><span class="k">${'ABCD'[k]}</span>${esc(t)}</button>`).join('')}
+    </div>
+    <div id="qafter"></div>`;
+  clearInterval(game.timer);
+  const t0 = Date.now();
+  game.timer = setInterval(() => {
+    game.left = Math.max(0, Q_TIME - (Date.now() - t0) / 1000);
+    const bar = $('#qbar');
+    if (!bar) return clearInterval(game.timer);
+    bar.style.width = (game.left / Q_TIME) * 100 + '%';
+    bar.classList.toggle('low', game.left < 6);
+    $('#qsec').textContent = `⏱ ${Math.ceil(game.left)}s`;
+    if (game.left <= 0) quizAnswer(-1);
+  }, 100);
+}
+
+function quizAnswer(k) {
+  if (game.locked) return;
+  game.locked = true;
+  clearInterval(game.timer);
+  const q = game.list[game.i];
+  const ok = k === q.c;
+  let gain = 0;
+  if (ok) {
+    game.streak++;
+    game.correct++;
+    gain = 100 + Math.round(game.left * 5) + (game.streak >= 3 ? 50 : 0); // điểm gốc + thưởng tốc độ + thưởng chuỗi
+    game.score += gain;
+    game.best = Math.max(game.best, game.streak);
+  } else {
+    game.streak = 0;
+    game.wrong.push(q);
+  }
+  qcard.querySelectorAll('.ans').forEach(b => {
+    const idx = +b.dataset.ans;
+    b.disabled = true;
+    if (idx === q.c) b.classList.add('ok');
+    else if (idx === k) b.classList.add('bad');
+    else b.classList.add('dim');
+  });
+  const last = game.i === game.list.length - 1;
+  $('#qafter').innerHTML = `
+    <div class="why"><span>${ok ? '✅' : k === -1 ? '⏰' : '💡'}</span>
+      <div><b>${ok ? 'Chính xác!' : k === -1 ? 'Hết giờ!' : 'Chưa đúng rồi.'}</b>${esc(q.why)}</div></div>
+    <div class="qnext">
+      <span class="gain">${ok ? `+${gain} điểm${game.streak >= 3 ? ' (thưởng chuỗi 🔥)' : ''}` : ''}</span>
+      <button class="qbtn" data-quiz="next">${last ? 'Xem kết quả' : 'Câu tiếp theo →'}</button>
+    </div>`;
+  $('[data-quiz="next"]', qcard).focus({ preventScroll: true });
+}
+
+function quizEnd() {
+  const total = game.list.length;
+  const pct = game.correct / total;
+  const rank = pct >= .9 ? 'Đại sứ di sản Đồng Nai' : pct >= .7 ? 'Nhà thám hiểm rừng xanh' : pct >= .4 ? 'Lữ khách ham học hỏi' : 'Cần ghé thăm rừng thêm';
+  const prev = store.get('hq-best');
+  const record = game.score > prev;
+  if (record) store.set('hq-best', game.score);
+  qcard.innerHTML = `
+    <div class="result">
+      <p class="eyebrow">${record ? '🎉 Kỷ lục mới!' : 'Kết quả của bạn'}</p>
+      <div class="big">${game.score}</div>
+      <span class="rank">${rank}</span>
+      <div class="rstats">
+        <div><b>${game.correct}/${total}</b><span>Câu đúng</span></div>
+        <div><b>${game.best}</b><span>Chuỗi dài nhất</span></div>
+        <div><b>${Math.max(prev, game.score)}</b><span>Kỷ lục</span></div>
+      </div>
+      ${game.wrong.length ? `<p class="muted">Xem lại các câu chưa đúng:</p>
+        <div class="review">${game.wrong.map(q => `<div>${esc(q.q)}<small>→ ${esc(q.a[q.c])}</small></div>`).join('')}</div>` : '<p class="muted">Bạn trả lời đúng tất cả, quá đỉnh!</p>'}
+      <div class="rbtns">
+        <button class="qbtn" data-quiz="play">Chơi lại</button>
+        <button class="qbtn alt" data-quiz="menu">Đổi chủ đề</button>
+      </div>
+    </div>`;
+  if (pct >= .7 && !reduce) confetti();
+}
+
+function confetti() {
+  const colors = ['#c0582f', '#d9a441', '#2f5d3a', '#3d6f86', '#6b3f6e'];
+  for (let i = 0; i < 50; i++) {
+    const s = document.createElement('span');
+    s.className = 'confetti';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.background = colors[i % colors.length];
+    s.style.animationDelay = Math.random() * .8 + 's';
+    qcard.appendChild(s);
+    setTimeout(() => s.remove(), 3600);
+  }
+}
+
+// Sự kiện của trò chơi
+qcard.addEventListener('click', e => {
+  const topic = e.target.closest('[data-topic]');
+  const ans = e.target.closest('[data-ans]');
+  const act = e.target.closest('[data-quiz]');
+  if (topic) {
+    game.topic = topic.dataset.topic;
+    qcard.querySelectorAll('.topic').forEach(b => b.setAttribute('aria-pressed', b === topic));
+  } else if (ans) quizAnswer(+ans.dataset.ans);
+  else if (act) {
+    const a = act.dataset.quiz;
+    if (a === 'play') quizPlay();
+    if (a === 'menu') quizStart();
+    if (a === 'next') { game.i++; game.i < game.list.length ? quizQuestion() : quizEnd(); }
+  }
+});
+// Phím tắt: 1–4 hoặc A–D để chọn đáp án
+document.addEventListener('keydown', e => {
+  if (!qcard.querySelector('.ans') || game.locked || $('#modal').classList.contains('show')) return;
+  if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+  const r = qcard.getBoundingClientRect();
+  if (r.bottom < 0 || r.top > innerHeight) return; // chỉ nhận phím khi khung trò chơi đang hiện trên màn hình
+  const k = '1234'.indexOf(e.key) > -1 ? '1234'.indexOf(e.key) : 'abcd'.indexOf(e.key.toLowerCase());
+  if (k > -1) quizAnswer(k);
+});
+
+/* Khởi chạy */
+quizStart();
+// Số liệu lấy thẳng từ dữ liệu để luôn khớp
+const counts = document.querySelectorAll('[data-count]');
+counts[0].dataset.count = ZONES.length;
+counts[1].dataset.count = ZONES.reduce((s, z) => s + z.items.length, 0);
+counts[2].dataset.count = ZONES.reduce((s, z) => s + z.items.reduce((t, it) => t + it.children.length, 0), 0);
+counts[2].nextElementSibling.textContent = 'Nội dung chi tiết';
+
+renderZones();
+renderMap();
+renderChips();
+$('#introArt').innerHTML = SCENES.village('intro');
+observe();
+</script>
+</body>
+</html>
