@@ -228,6 +228,22 @@ section{position:relative}
 @keyframes fall{to{transform:translateY(720px) rotate(720deg);opacity:0}}
 @media(max-width:620px){.topics,.answers{grid-template-columns:1fr}.rstats b{font-size:1.25rem}}
 
+/* ===== Đọc nội dung bằng giọng nói ===== */
+[data-speak]{cursor:pointer;transition:color .25s}
+[data-speak]:hover{color:var(--zc,var(--clay))}
+.spk{display:inline-grid;place-items:center;width:.95em;height:.95em;margin-left:.3em;vertical-align:.08em;border-radius:50%;background:var(--zc,var(--clay));color:#fff;transition:transform .25s var(--ease)}
+.spk svg{width:56%;height:56%}
+[data-speak]:hover .spk{transform:scale(1.12)}
+.spk .bars{display:none;gap:2px;align-items:center;height:45%}
+.spk .bars i{width:2px;height:100%;background:#fff;border-radius:2px;animation:eq .8s ease-in-out infinite}
+.spk .bars i:nth-child(2){animation-delay:.15s}.spk .bars i:nth-child(3){animation-delay:.3s}
+@keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+.speaking .spk{box-shadow:0 0 0 .14em rgba(217,164,65,.45)}
+.speaking .spk svg{display:none}
+.speaking .spk .bars{display:flex}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;z-index:200;background:var(--ink);color:var(--paper);padding:.75rem 1.2rem;border-radius:99px;font-size:.88rem;max-width:min(92vw,520px);text-align:center;pointer-events:none;transition:.35s var(--ease)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
 /* ===== Footer ===== */
 footer{background:var(--ink);color:rgba(245,238,223,.75);padding:4rem 0 2rem;font-size:.9rem}
 footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem}
@@ -347,7 +363,7 @@ footer button:hover{opacity:1;color:var(--gold)}
   <div class="wrap">
     <div>
       <p class="eyebrow rv">Giới thiệu</p>
-      <h2 class="rv">Giữ hồn quê<br>bằng ngôn ngữ số</h2>
+      <h2 class="rv" data-speak="intro">Giữ hồn quê<br>bằng ngôn ngữ số</h2>
       <p class="rv">“Hồn Quê” số hóa cảnh quan, con người và nếp sống của vùng đất thành một bảo tàng mở. Mọi nội dung được sắp theo ba cấp: thư mục lớn, thư mục con và nội dung chi tiết, để người xem tìm đúng thứ mình cần mà không bị lạc.</p>
       <p class="rv">Bốn khu được kết nối bằng một bản đồ tương tác. Chọn một khu, cảnh quan sẽ chuyển theo, rồi đi sâu vào từng câu chuyện.</p>
       <p class="quote rv">“Đi khắp bốn phương, vẫn nhớ một miền quê.”</p>
@@ -369,7 +385,7 @@ footer button:hover{opacity:1;color:var(--gold)}
         <div class="panel-scene" id="panelScene"></div>
         <div class="panel-body">
           <p class="eyebrow" id="pTag" style="color:var(--zc)"></p>
-          <h3 id="pName"></h3>
+          <h3 id="pName" data-speak="panel"></h3>
           <p id="pIntro"></p>
           <ul class="panel-list" id="pList"></ul>
           <a class="btn" id="pGo" href="#">Vào khu này →</a>
@@ -429,7 +445,7 @@ footer button:hover{opacity:1;color:var(--gold)}
     <div class="sheet-top" id="mScene"><button class="close" data-close aria-label="Đóng">✕</button></div>
     <div class="sheet-in">
       <div class="crumb" id="mCrumb"></div>
-      <h2 id="mTitle"></h2>
+      <h2 id="mTitle" data-speak="modal"></h2>
       <p class="sum" id="mSum"></p>
       <div id="mMedia"></div>
       <div id="mAcc"></div>
@@ -665,7 +681,7 @@ function renderZones() {
         <div class="zhead rv">
           <div class="znum">${z.code}</div>
           <div><p class="eyebrow" style="color:${z.color}">Khu ${z.code} · ${esc(z.tag)}</p>
-          <h2>${esc(z.name.split(' ').slice(0, -1).join(' ') || '')} <span>${esc(z.name.split(' ').slice(-1))}</span></h2>
+          <h2 data-speak="zone:${z.id}">${esc(z.name.split(' ').slice(0, -1).join(' ') || '')} <span>${esc(z.name.split(' ').slice(-1))}</span></h2>
           <p>${esc(z.intro)}</p></div>
         </div>
         <div class="zbody">
@@ -737,7 +753,9 @@ function selectZone(id) {
   const panel = $('.panel');
   panel.style.setProperty('--zc', z.color);
   $('#pTag').textContent = `Khu ${z.code} · ${z.tag}`;
+  if (tts.activeEl && tts.activeEl.id === 'pName') tts.stop();
   $('#pName').textContent = z.name;
+  decorateSpeak($('.panel'));
   $('#pIntro').textContent = z.intro;
   $('#pList').innerHTML = z.items.map(it => `<li><button data-open="${z.id}:${it.id}">${esc(it.title)}</button></li>`).join('');
   $('#pGo').href = `#khu-${z.id}`;
@@ -757,7 +775,9 @@ function openItem(zid, iid) {
   sheet.style.setProperty('--zc', z.color);
   $('#mScene').innerHTML = `<button class="close" data-close aria-label="Đóng">✕</button>${SCENES[z.scene]('m' + z.id)}`;
   $('#mCrumb').innerHTML = `<button data-go="${z.id}">Khu ${z.code}: ${esc(z.name)}</button><span>›</span><span>${esc(it.title)}</span>`;
+  tts.stop();
   $('#mTitle').textContent = it.title;
+  decorateSpeak($('#sheet'));
   $('#mSum').textContent = it.summary;
   // Gắn video thật: thay khối này bằng <iframe src="https://www.youtube.com/embed/ID"> khi đưa lên host riêng
   $('#mMedia').innerHTML = it.video ? `<div class="video"><span class="play">▶</span><small>Gắn link video YouTube / file MP4 tại đây</small></div>` : '';
@@ -777,6 +797,7 @@ function openItem(zid, iid) {
   $('.close', sheet).focus();
 }
 function closeModal() {
+  tts.stop();
   $('#modal').classList.remove('show');
   document.body.style.overflow = '';
   if (lastFocus) lastFocus.focus();
@@ -1082,6 +1103,102 @@ document.addEventListener('keydown', e => {
   if (k > -1) quizAnswer(k);
 });
 
+/* =========================================================
+   9. ĐỌC NỘI DUNG BẰNG GIỌNG NÓI (Web Speech API, có sẵn trong trình duyệt)
+   Bấm vào tiêu đề có biểu tượng loa để nghe; bấm lần nữa để dừng.
+   ========================================================= */
+const SPK_ICON = `<span class="spk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="bars"><i></i><i></i><i></i></span></span>`;
+
+// Lấy nội dung cần đọc theo từng loại tiêu đề
+function speakText(key) {
+  const zoneText = (z) => `Khu ${z.code}: ${z.name}. ${z.intro} Khu này gồm ${z.items.length} chuyên mục. ` +
+    z.items.map(it => `${it.title}. ${it.summary}`).join(' ');
+  if (key === 'intro') {
+    const box = $('#gioi-thieu .wrap > div');
+    return [...box.querySelectorAll('h2, p:not(.eyebrow)')].map(el => el.innerText.replace(/\n/g, ' ')).join('. ');
+  }
+  if (key.startsWith('zone:')) return zoneText(ZONES.find(z => z.id === key.split(':')[1]));
+  if (key === 'panel') return zoneText(ZONES.find(z => z.id === $('.zone.active').dataset.zone));
+  if (key === 'modal') {
+    const parts = [$('#mTitle').innerText, $('#mSum').innerText];
+    document.querySelectorAll('#mAcc .acc').forEach(a => parts.push(a.querySelector('button').innerText.replace('+', '').trim() + '. ' + a.querySelector('.ac-body p').innerText));
+    return parts.join('. ');
+  }
+  return '';
+}
+
+const tts = {
+  supported: 'speechSynthesis' in window,
+  voice: null,
+  activeEl: null,
+  pickVoice() {
+    if (!this.supported) return;
+    const vs = speechSynthesis.getVoices();
+    // Ưu tiên giọng tiếng Việt chất lượng cao (Microsoft Online / Google) nếu máy có
+    this.voice = vs.find(v => /^vi/i.test(v.lang) && /online|natural|google/i.test(v.name)) || vs.find(v => /^vi/i.test(v.lang)) || null;
+  },
+  stop() {
+    if (!this.supported) return;
+    speechSynthesis.cancel();
+    if (this.activeEl) this.activeEl.classList.remove('speaking');
+    this.activeEl = null;
+  },
+  speak(text, el) {
+    if (!this.supported) return toast('Trình duyệt này chưa hỗ trợ đọc nội dung. Hãy dùng Chrome hoặc Edge bản mới.');
+    const same = this.activeEl === el;
+    this.stop();
+    if (same) return; // bấm lần nữa = dừng
+    if (!this.voice) this.pickVoice();
+    if (!this.voice) toast('Máy chưa có giọng đọc tiếng Việt, âm thanh có thể không chuẩn. Nên mở bằng Microsoft Edge.');
+    // Chia nhỏ theo câu: Chrome hay tự dừng khi đọc đoạn quá dài
+    const chunks = text.replace(/\s+/g, ' ').replace(/([.!?:])\s*\./g, '$1').match(/[^.!?;:]+[.!?;:]*/g) || [text];
+    this.activeEl = el;
+    el.classList.add('speaking');
+    chunks.forEach((c, i) => {
+      const u = new SpeechSynthesisUtterance(c.trim());
+      u.lang = 'vi-VN';
+      if (this.voice) u.voice = this.voice;
+      u.rate = 0.95;
+      if (i === chunks.length - 1) u.onend = () => { if (this.activeEl === el) this.stop(); };
+      u.onerror = (e) => { if (e.error !== 'interrupted' && e.error !== 'canceled') this.stop(); };
+      speechSynthesis.speak(u);
+    });
+  }
+};
+if (tts.supported) {
+  tts.pickVoice();
+  speechSynthesis.addEventListener?.('voiceschanged', () => tts.pickVoice()); // danh sách giọng nạp chậm trên Chrome
+  addEventListener('pagehide', () => speechSynthesis.cancel());
+}
+
+let toastTimer;
+function toast(msg) {
+  let t = $('#toast');
+  if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// Gắn biểu tượng loa + cho phép dùng bàn phím (Enter/Space) trên mọi tiêu đề data-speak
+function decorateSpeak(root = document) {
+  root.querySelectorAll('[data-speak]').forEach(h => {
+    if (!h.querySelector('.spk')) h.insertAdjacentHTML('beforeend', SPK_ICON);
+    h.setAttribute('role', 'button');
+    h.setAttribute('tabindex', '0');
+    h.title = 'Bấm để nghe đọc nội dung';
+  });
+}
+document.addEventListener('click', e => {
+  const h = e.target.closest('[data-speak]');
+  if (h) tts.speak(speakText(h.dataset.speak), h);
+});
+document.addEventListener('keydown', e => {
+  const h = e.target.closest?.('[data-speak]');
+  if (h && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); tts.speak(speakText(h.dataset.speak), h); }
+});
+
 /* Khởi chạy */
 quizStart();
 // Số liệu lấy thẳng từ dữ liệu để luôn khớp
@@ -1093,6 +1210,7 @@ counts[2].nextElementSibling.textContent = 'Nội dung chi tiết';
 
 renderZones();
 renderMap();
+decorateSpeak();
 renderChips();
 $('#introArt').innerHTML = SCENES.village('intro');
 observe();
