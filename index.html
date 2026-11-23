@@ -228,19 +228,12 @@ section{position:relative}
 @keyframes fall{to{transform:translateY(720px) rotate(720deg);opacity:0}}
 @media(max-width:620px){.topics,.answers{grid-template-columns:1fr}.rstats b{font-size:1.25rem}}
 
-/* ===== Đọc nội dung bằng giọng nói ===== */
-[data-speak]{cursor:pointer;transition:color .25s}
-[data-speak]:hover{color:var(--zc,var(--clay))}
-.spk{display:inline-grid;place-items:center;width:.95em;height:.95em;margin-left:.3em;vertical-align:.08em;border-radius:50%;background:var(--zc,var(--clay));color:#fff;transition:transform .25s var(--ease)}
-.spk svg{width:56%;height:56%}
-[data-speak]:hover .spk{transform:scale(1.12)}
-.spk .bars{display:none;gap:2px;align-items:center;height:45%}
-.spk .bars i{width:2px;height:100%;background:#fff;border-radius:2px;animation:eq .8s ease-in-out infinite}
-.spk .bars i:nth-child(2){animation-delay:.15s}.spk .bars i:nth-child(3){animation-delay:.3s}
-@keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
-.speaking .spk{box-shadow:0 0 0 .14em rgba(217,164,65,.45)}
-.speaking .spk svg{display:none}
-.speaking .spk .bars{display:flex}
+/* ===== Đọc nội dung bằng giọng nói: bấm vào chữ để nghe ===== */
+.tts{cursor:pointer;border-radius:6px;transition:background-color .25s,box-shadow .25s}
+.tts:hover{background-color:rgba(217,164,65,.16);box-shadow:0 0 0 .2em rgba(217,164,65,.16)}
+.tts.speaking{background-color:rgba(217,164,65,.32);box-shadow:0 0 0 .2em rgba(217,164,65,.32);animation:speakPulse 1.4s ease-in-out infinite}
+.tts:is(h1,h2,h3){width:fit-content}
+@keyframes speakPulse{50%{box-shadow:0 0 0 .35em rgba(217,164,65,.12)}}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;z-index:200;background:var(--ink);color:var(--paper);padding:.75rem 1.2rem;border-radius:99px;font-size:.88rem;max-width:min(92vw,520px);text-align:center;pointer-events:none;transition:.35s var(--ease)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -363,7 +356,7 @@ footer button:hover{opacity:1;color:var(--gold)}
   <div class="wrap">
     <div>
       <p class="eyebrow rv">Giới thiệu</p>
-      <h2 class="rv" data-speak="intro">Giữ hồn quê<br>bằng ngôn ngữ số</h2>
+      <h2 class="rv">Giữ hồn quê<br>bằng ngôn ngữ số</h2>
       <p class="rv">“Hồn Quê” số hóa cảnh quan, con người và nếp sống của vùng đất thành một bảo tàng mở. Mọi nội dung được sắp theo ba cấp: thư mục lớn, thư mục con và nội dung chi tiết, để người xem tìm đúng thứ mình cần mà không bị lạc.</p>
       <p class="rv">Bốn khu được kết nối bằng một bản đồ tương tác. Chọn một khu, cảnh quan sẽ chuyển theo, rồi đi sâu vào từng câu chuyện.</p>
       <p class="quote rv">“Đi khắp bốn phương, vẫn nhớ một miền quê.”</p>
@@ -385,7 +378,7 @@ footer button:hover{opacity:1;color:var(--gold)}
         <div class="panel-scene" id="panelScene"></div>
         <div class="panel-body">
           <p class="eyebrow" id="pTag" style="color:var(--zc)"></p>
-          <h3 id="pName" data-speak="panel"></h3>
+          <h3 id="pName"></h3>
           <p id="pIntro"></p>
           <ul class="panel-list" id="pList"></ul>
           <a class="btn" id="pGo" href="#">Vào khu này →</a>
@@ -445,7 +438,7 @@ footer button:hover{opacity:1;color:var(--gold)}
     <div class="sheet-top" id="mScene"><button class="close" data-close aria-label="Đóng">✕</button></div>
     <div class="sheet-in">
       <div class="crumb" id="mCrumb"></div>
-      <h2 id="mTitle" data-speak="modal"></h2>
+      <h2 id="mTitle"></h2>
       <p class="sum" id="mSum"></p>
       <div id="mMedia"></div>
       <div id="mAcc"></div>
@@ -681,7 +674,7 @@ function renderZones() {
         <div class="zhead rv">
           <div class="znum">${z.code}</div>
           <div><p class="eyebrow" style="color:${z.color}">Khu ${z.code} · ${esc(z.tag)}</p>
-          <h2 data-speak="zone:${z.id}">${esc(z.name.split(' ').slice(0, -1).join(' ') || '')} <span>${esc(z.name.split(' ').slice(-1))}</span></h2>
+          <h2>${esc(z.name.split(' ').slice(0, -1).join(' ') || '')} <span>${esc(z.name.split(' ').slice(-1))}</span></h2>
           <p>${esc(z.intro)}</p></div>
         </div>
         <div class="zbody">
@@ -753,9 +746,8 @@ function selectZone(id) {
   const panel = $('.panel');
   panel.style.setProperty('--zc', z.color);
   $('#pTag').textContent = `Khu ${z.code} · ${z.tag}`;
-  if (tts.activeEl && tts.activeEl.id === 'pName') tts.stop();
+  if (tts.activeEl && tts.activeEl.closest('.panel')) tts.stop();
   $('#pName').textContent = z.name;
-  decorateSpeak($('.panel'));
   $('#pIntro').textContent = z.intro;
   $('#pList').innerHTML = z.items.map(it => `<li><button data-open="${z.id}:${it.id}">${esc(it.title)}</button></li>`).join('');
   $('#pGo').href = `#khu-${z.id}`;
@@ -777,7 +769,6 @@ function openItem(zid, iid) {
   $('#mCrumb').innerHTML = `<button data-go="${z.id}">Khu ${z.code}: ${esc(z.name)}</button><span>›</span><span>${esc(it.title)}</span>`;
   tts.stop();
   $('#mTitle').textContent = it.title;
-  decorateSpeak($('#sheet'));
   $('#mSum').textContent = it.summary;
   // Gắn video thật: thay khối này bằng <iframe src="https://www.youtube.com/embed/ID"> khi đưa lên host riêng
   $('#mMedia').innerHTML = it.video ? `<div class="video"><span class="play">▶</span><small>Gắn link video YouTube / file MP4 tại đây</small></div>` : '';
@@ -1107,25 +1098,17 @@ document.addEventListener('keydown', e => {
    9. ĐỌC NỘI DUNG BẰNG GIỌNG NÓI (Web Speech API, có sẵn trong trình duyệt)
    Bấm vào tiêu đề có biểu tượng loa để nghe; bấm lần nữa để dừng.
    ========================================================= */
-const SPK_ICON = `<span class="spk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="bars"><i></i><i></i><i></i></span></span>`;
-
-// Lấy nội dung cần đọc theo từng loại tiêu đề
-function speakText(key) {
-  const zoneText = (z) => `Khu ${z.code}: ${z.name}. ${z.intro} Khu này gồm ${z.items.length} chuyên mục. ` +
-    z.items.map(it => `${it.title}. ${it.summary}`).join(' ');
-  if (key === 'intro') {
-    const box = $('#gioi-thieu .wrap > div');
-    return [...box.querySelectorAll('h2, p:not(.eyebrow)')].map(el => el.innerText.replace(/\n/g, ' ')).join('. ');
-  }
-  if (key.startsWith('zone:')) return zoneText(ZONES.find(z => z.id === key.split(':')[1]));
-  if (key === 'panel') return zoneText(ZONES.find(z => z.id === $('.zone.active').dataset.zone));
-  if (key === 'modal') {
-    const parts = [$('#mTitle').innerText, $('#mSum').innerText];
-    document.querySelectorAll('#mAcc .acc').forEach(a => parts.push(a.querySelector('button').innerText.replace('+', '').trim() + '. ' + a.querySelector('.ac-body p').innerText));
-    return parts.join('. ');
-  }
-  return '';
-}
+// Những chữ bấm vào là đọc: tiêu đề và nội dung tách riêng, bấm đâu đọc đó
+const SPEAK_SEL = [
+  '.hero h1', '.hero .lead',
+  '.intro h2', '.intro p:not(.eyebrow)',
+  '.sec-head h2', '.sec-head p:not(.eyebrow)',
+  '.zhead h2', '.zhead p:not(.eyebrow)',
+  '#pName', '#pIntro',
+  '#mTitle', '#mSum', '.ac-body p',
+  '.quiz-head h2', '.quiz-head p:not(.eyebrow)', '.qtext', '.why div',
+  '.explore h2'
+].join(',');
 
 const tts = {
   supported: 'speechSynthesis' in window,
@@ -1181,22 +1164,34 @@ function toast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
 }
 
-// Gắn biểu tượng loa + cho phép dùng bàn phím (Enter/Space) trên mọi tiêu đề data-speak
-function decorateSpeak(root = document) {
-  root.querySelectorAll('[data-speak]').forEach(h => {
-    if (!h.querySelector('.spk')) h.insertAdjacentHTML('beforeend', SPK_ICON);
-    h.setAttribute('role', 'button');
-    h.setAttribute('tabindex', '0');
-    h.title = 'Bấm để nghe đọc nội dung';
+// Đánh dấu các chữ đọc được (gọi lại khi nội dung được vẽ mới)
+function markSpeakable() {
+  document.querySelectorAll(SPEAK_SEL).forEach(el => {
+    if (el.classList.contains('tts')) return;
+    el.classList.add('tts');
+    el.setAttribute('tabindex', '0');
+    el.title = 'Bấm để nghe đọc, bấm lần nữa để dừng';
   });
 }
+let markQueued = false;
+new MutationObserver(() => {
+  if (markQueued) return;
+  markQueued = true;
+  requestAnimationFrame(() => {
+    markQueued = false;
+    markSpeakable();
+    if (tts.activeEl && !tts.activeEl.isConnected) tts.stop(); // chữ đang đọc bị thay (sang câu đố mới...) thì dừng
+  });
+}).observe(document.body, { childList: true, subtree: true });
+
+const readEl = (el) => tts.speak(el.innerText, el);
 document.addEventListener('click', e => {
-  const h = e.target.closest('[data-speak]');
-  if (h) tts.speak(speakText(h.dataset.speak), h);
+  const el = e.target.closest('.tts');
+  if (el) readEl(el);
 });
 document.addEventListener('keydown', e => {
-  const h = e.target.closest?.('[data-speak]');
-  if (h && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); tts.speak(speakText(h.dataset.speak), h); }
+  const el = e.target.closest?.('.tts');
+  if (el && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); readEl(el); }
 });
 
 /* Khởi chạy */
@@ -1210,7 +1205,7 @@ counts[2].nextElementSibling.textContent = 'Nội dung chi tiết';
 
 renderZones();
 renderMap();
-decorateSpeak();
+markSpeakable();
 renderChips();
 $('#introArt').innerHTML = SCENES.village('intro');
 observe();
