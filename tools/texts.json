@@ -16,8 +16,8 @@
   "text": "“Hồn Quê” số hóa cảnh quan, con người và nếp sống của vùng đất thành một bảo tàng mở. Mọi nội dung được sắp theo ba cấp: thư mục lớn, thư mục con và nội dung chi tiết, để người xem tìm đúng thứ mình cần mà không bị lạc."
  },
  {
-  "key": "3d7fcdd3",
-  "text": "Bốn khu được kết nối bằng một bản đồ tương tác. Chọn một khu, cảnh quan sẽ chuyển theo, rồi đi sâu vào từng câu chuyện."
+  "key": "a1d734f3",
+  "text": "Năm phân khu được kết nối bằng một bản đồ tương tác. Chọn một khu, cảnh quan sẽ chuyển theo, rồi đi sâu vào từng câu chuyện."
  },
  {
   "key": "b16edf68",
@@ -36,8 +36,16 @@
   "text": "Dấu Chân Chiến Khu Đ"
  },
  {
-  "key": "afc84c95",
-  "text": "Căn cứ địa cách mạng của miền Đông Nam Bộ ẩn mình dưới tán rừng Mã Đà, cùng công trình Thủy điện Trị An và lòng hồ Trị An rộng lớn trên dòng sông Đồng Nai."
+  "key": "61d25b95",
+  "text": "Căn cứ địa cách mạng của miền Đông Nam Bộ, ẩn mình dưới tán rừng Mã Đà, nơi ghi dấu những năm tháng kháng chiến kiên cường của quân và dân."
+ },
+ {
+  "key": "1b2b3cfb",
+  "text": "Thủy Điện Trị An"
+ },
+ {
+  "key": "440cd106",
+  "text": "Công trình thủy điện lớn trên dòng sông Đồng Nai, biểu tượng năng lượng của tình hữu nghị Việt Nam – Liên Xô, cùng lòng hồ Trị An mênh mông."
  },
  {
   "key": "9bf4a8ca",
@@ -80,72 +88,116 @@
   "text": "Căn cứ Trung ương Cục miền Nam"
  },
  {
-  "key": "e968a696",
-  "text": "Mô hình căn cứ ẩn dưới tán rừng Mã Đà với lều lán quân y, hầm chông, chiến sĩ bộ đội và lối đi quanh co."
+  "key": "8b16941b",
+  "text": "Căn cứ ẩn dưới tán rừng Mã Đà, được tái hiện trên sa bàn với lều lán quân y, hầm chông và lối đi quanh co."
  },
  {
   "key": "23e02589",
   "text": "Ngày 23/01/1961, Hội nghị Trung ương 3 khóa III quyết định thành lập Trung ương Cục miền Nam, thay cho Xứ ủy Nam Bộ."
  },
  {
-  "key": "58633fff",
-  "text": "Khu di tích Trung ương Cục miền Nam được xếp hạng di tích quốc gia năm 2001. Hằng năm, ngày 21/4 là lễ giỗ chung các liệt sĩ tại đây."
+  "key": "1dd43fcf",
+  "text": "Nhiều năm nay, cứ đến ngày 21/4, Khu bảo tồn lại tổ chức lễ giỗ chung cho các liệt sĩ đã hy sinh tại khu di tích."
  },
  {
-  "key": "14fcf7ac",
-  "text": "Dấu chân Chiến khu Đ"
+  "key": "3de07514",
+  "text": "Ba di tích trong rừng"
  },
  {
-  "key": "5cdda274",
-  "text": "Căn cứ địa cách mạng của miền Đông Nam Bộ từ năm 1946, nơi ghi dấu tinh thần kiên cường của quân và dân."
+  "key": "b4d56295",
+  "text": "Khu bảo tồn đang quản lý ba di tích cấp quốc gia: Căn cứ Trung ương Cục miền Nam, Căn cứ Khu ủy miền Đông Nam Bộ và Địa đạo Suối Linh."
  },
  {
-  "key": "5722abcc",
-  "text": "Trong Khu bảo tồn có ba di tích lịch sử: Căn cứ Trung ương Cục miền Nam, Căn cứ Khu ủy miền Đông và Địa đạo Suối Linh."
+  "key": "af466528",
+  "text": "Được thành lập tháng 2 năm 1961 tại Suối Linh."
  },
  {
-  "key": "edd3414d",
-  "text": "Căn cứ Khu ủy miền Đông Nam Bộ được thành lập tháng 2 năm 1961 tại Suối Linh."
+  "key": "6feeb4ce",
+  "text": "Hệ thống địa đạo trong rừng Chiến khu Đ, nay do Khu bảo tồn quản lý cùng hai căn cứ."
  },
  {
-  "key": "ddd0b7f1",
-  "text": "Bài nghe kể chuyện qua mã QR A1, đưa người xem về những năm tháng kháng chiến dưới tán rừng Mã Đà."
+  "key": "1f85b75d",
+  "text": "Nằm trong Khu di tích lịch sử Chiến khu Đ, rộng khoảng 2,5 ha, là nơi các đoàn về thắp hương tưởng niệm."
  },
  {
-  "key": "2478a6c0",
-  "text": "Thủy điện Trị An"
+  "key": "28ccc432",
+  "text": "Huyền thoại rừng Mã Đà"
  },
  {
-  "key": "8be8d3bc",
-  "text": "Biểu tượng năng lượng của tình hữu nghị Việt Nam – Liên Xô trên dòng sông Đồng Nai."
+  "key": "4ae9b578",
+  "text": "Tư liệu lịch sử và bài nghe kể chuyện đưa người xem về những năm tháng kháng chiến dưới tán rừng Mã Đà."
  },
  {
-  "key": "c91b08bd",
-  "text": "Công trình khởi công năm 1984 và hòa lưới điện năm 1988."
+  "key": "949efc1a",
+  "text": "Góc trái phía trên sa bàn tái hiện căn cứ ẩn mình dưới tán rừng, lều lán quân y, hầm chông, chiến sĩ bộ đội và lối đi quanh co."
  },
  {
-  "key": "2cbf1863",
-  "text": "Công suất 400 MW với 4 tổ máy, sản lượng khoảng 1,7 tỷ kWh mỗi năm."
+  "key": "9cb10927",
+  "text": "Chiến khu Đ là căn cứ địa cách mạng của quân dân miền Đông Nam Bộ trong hai cuộc kháng chiến chống Pháp và chống Mỹ."
+ },
+ {
+  "key": "79051069",
+  "text": "Lịch sử xây dựng"
+ },
+ {
+  "key": "8fe969b3",
+  "text": "Công trình được xây dựng với sự hỗ trợ toàn diện của Liên Xô trước đây."
+ },
+ {
+  "key": "c85a3fa8",
+  "text": "Khởi công năm 1984, bắt đầu phát điện ngày 30/4/1988 và hoàn thành năm 1991."
+ },
+ {
+  "key": "a35ca958",
+  "text": "Ngày 19/8/2025, Nhà máy Thủy điện Trị An mở rộng được khởi công, xây thêm hai tổ máy để nâng tổng công suất lên 600 MW, dự kiến hoàn thành năm 2027."
+ },
+ {
+  "key": "70f9ca0a",
+  "text": "Thông số nhà máy"
+ },
+ {
+  "key": "dd7891f5",
+  "text": "4 tổ máy với tổng công suất 400 MW, cung cấp khoảng 1,7 tỷ kWh điện mỗi năm."
+ },
+ {
+  "key": "0cf7abdb",
+  "text": "Nhà máy có 4 tổ máy với tổng công suất 400 MW."
+ },
+ {
+  "key": "dd94f53c",
+  "text": "Mỗi năm cung cấp khoảng 1,7 tỷ kWh điện cho hệ thống điện quốc gia."
+ },
+ {
+  "key": "bcf5b7a6",
+  "text": "Vai trò của thủy điện"
  },
  {
   "key": "f6ccd5f6",
   "text": "Phát điện, cắt lũ và cấp nước cho vùng hạ du sông Đồng Nai."
  },
  {
+  "key": "88212e54",
+  "text": "Thủy điện Trị An là bậc thang thủy điện cuối cùng trên hệ thống sông Đồng Nai."
+ },
+ {
+  "key": "594471b4",
+  "text": "Ngoài phát điện, hồ chứa còn góp phần điều tiết lũ và cấp nước cho vùng hạ du."
+ },
+ {
   "key": "5ab08f64",
   "text": "Lòng hồ Trị An"
  },
  {
-  "key": "d2374ab4",
-  "text": "Hồ chứa rộng lớn với dung tích khoảng 2,76 tỷ m³, tạo nên cảnh quan mặt nước mênh mông giữa rừng."
+  "key": "6416b8aa",
+  "text": "Hồ chứa rộng lớn tạo nên cảnh quan mặt nước mênh mông giữa núi rừng."
  },
  {
   "key": "c3755a60",
   "text": "Khu Bảo tồn Thiên nhiên – Văn hóa Đồng Nai quản lý hơn 32.500 ha mặt nước hồ Trị An."
  },
  {
-  "key": "732a1974",
-  "text": "Góc trái dưới sa bàn mô phỏng đập xả nước bê tông, nhà máy phát điện, dòng sông Đồng Nai và lòng hồ Trị An."
+  "key": "02390201",
+  "text": "Góc trái phía dưới sa bàn mô phỏng đập xả nước bê tông, nhà máy phát điện, dòng sông Đồng Nai và lòng hồ Trị An."
  },
  {
   "key": "c6bd3129",
@@ -188,8 +240,8 @@
   "text": "Thực vật & cây gỗ quý"
  },
  {
-  "key": "293efd5f",
-  "text": "Thảm thực vật rừng nguyên sinh với hơn 1.500 loài thực vật và nhiều cây gỗ quý."
+  "key": "2a5c0cdc",
+  "text": "Thảm thực vật rừng nguyên sinh với nhiều cây gỗ quý."
  },
  {
   "key": "2856bbc6",
@@ -204,8 +256,8 @@
   "text": "Thư viện cây con & bảo vệ rừng"
  },
  {
-  "key": "a9bb7d67",
-  "text": "Hồ sơ đa dạng sinh học qua mã QR B1 và bài học bảo vệ môi trường cho học sinh."
+  "key": "79be45ab",
+  "text": "Hồ sơ đa dạng sinh học và bài học bảo vệ môi trường cho học sinh."
  },
  {
   "key": "f4135424",
@@ -232,20 +284,20 @@
   "text": "Người Chơ Ro là một trong những cư dân bản địa của vùng đất Đồng Nai."
  },
  {
-  "key": "32826468",
-  "text": "Vị trí trung tâm dưới sa bàn tái hiện nhà sàn gỗ, cồng chiêng, hũ rượu cần, gùi đan lát và nông cụ sản xuất."
+  "key": "dc1610b9",
+  "text": "Vị trí trung tâm phía dưới sa bàn tái hiện nhà sàn gỗ, cồng chiêng, hũ rượu cần, gùi đan lát và nông cụ sản xuất."
  },
  {
   "key": "7fae5665",
   "text": "Cồng chiêng & rượu cần"
  },
  {
-  "key": "90996a80",
-  "text": "Âm thanh cồng chiêng thực tế qua mã QR C1, cùng hũ gốm rượu cần trong các dịp lễ."
+  "key": "a3dec917",
+  "text": "Âm thanh cồng chiêng thực tế cùng hũ gốm rượu cần trong các dịp lễ."
  },
  {
-  "key": "907c4986",
-  "text": "Quét mã QR C1 để nghe âm thanh cồng chiêng của đồng bào Chơ Ro."
+  "key": "34a8122e",
+  "text": "Quét mã QR của phân khu để nghe âm thanh cồng chiêng của đồng bào Chơ Ro."
  },
  {
   "key": "d8c71f71",
@@ -264,8 +316,8 @@
   "text": "Lễ cúng thần lúa thể hiện lòng biết ơn và mong ước mùa màng bội thu."
  },
  {
-  "key": "361ae8f6",
-  "text": "Mã QR C2 – C3 kết nối video tư liệu về Lễ cúng thần lúa Say Yang Va."
+  "key": "854c869c",
+  "text": "Mã QR của phân khu kết nối video tư liệu về Lễ cúng thần lúa Say Yang Va."
  },
  {
   "key": "fb960f00",
@@ -296,8 +348,8 @@
   "text": "Mở camera điện thoại, đưa vào mã QR của phân khu muốn tìm hiểu rồi bấm vào đường dẫn hiện ra."
  },
  {
-  "key": "dd426aeb",
-  "text": "Mã A1 cho Chiến khu Đ, mã B1 cho rừng Vĩnh Cửu, mã C1 đến C3 cho văn hóa Chơ Ro."
+  "key": "a5f22e06",
+  "text": "Mỗi phân khu A, B, C, D có mã QR riêng dẫn thẳng tới nội dung của khu đó."
  },
  {
   "key": "5c184c02",

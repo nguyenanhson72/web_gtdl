@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hồn Quê Số – Chạm vào di sản</title>
-<meta name="description" content="Hồn Quê Số – Chạm vào di sản: khám phá 4 phân khu Chiến khu Đ và Thủy điện Trị An, rừng xanh Vĩnh Cửu, văn hóa Chơ Ro Phú Lý và Trạm khám phá số.">
+<meta name="description" content="Hồn Quê Số – Chạm vào di sản: khám phá 5 phân khu: Chiến khu Đ, Thủy điện Trị An, rừng xanh Vĩnh Cửu, văn hóa Chơ Ro Phú Lý và Trạm khám phá số.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500&display=swap" rel="stylesheet">
@@ -116,6 +116,7 @@ section{position:relative}
 .panel-list li button:hover{background:var(--ink);color:var(--paper)}
 .panel .btn{margin-top:auto;align-self:flex-start;background:var(--ink);color:var(--paper)}
 @media(max-width:960px){.map-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.map-hint{display:none}}
 
 /* ===== Từng khu ===== */
 .zsec{padding:clamp(5rem,9vw,7.5rem) 0;overflow:hidden}
@@ -300,6 +301,7 @@ footer button:hover{opacity:1;color:var(--gold)}
       <li><a href="#khu-b">Khu B</a></li>
       <li><a href="#khu-c">Khu C</a></li>
       <li><a href="#khu-d">Khu D</a></li>
+      <li><a href="#khu-e">Khu E</a></li>
       <li><a href="#do-vui">Đố vui</a></li>
       <li><a href="#kham-pha">Khám phá</a></li>
     </ul>
@@ -334,7 +336,7 @@ footer button:hover{opacity:1;color:var(--gold)}
       <h1 class="rv">Hồn <em>Quê</em></h1>
       <p class="lead rv">Vĩnh Cửu – Đồng Nai thu nhỏ trong vài cú chạm: Chiến khu Đ, Thủy điện Trị An, rừng xanh Vĩnh Cửu và văn hóa Chơ Ro Phú Lý. Bấm chuột là tới nơi bạn muốn tìm.</p>
       <div class="hero-actions rv">
-        <a href="#ban-do" class="btn btn-gold">Mở bản đồ 4 khu →</a>
+        <a href="#ban-do" class="btn btn-gold">Mở bản đồ 5 khu →</a>
         <a href="#gioi-thieu" class="btn btn-ghost">▶ Xem giới thiệu</a>
       </div>
     </div>
@@ -359,7 +361,7 @@ footer button:hover{opacity:1;color:var(--gold)}
       <p class="eyebrow rv">Giới thiệu</p>
       <h2 class="rv">Giữ hồn quê<br>bằng ngôn ngữ số</h2>
       <p class="rv">“Hồn Quê” số hóa cảnh quan, con người và nếp sống của vùng đất thành một bảo tàng mở. Mọi nội dung được sắp theo ba cấp: thư mục lớn, thư mục con và nội dung chi tiết, để người xem tìm đúng thứ mình cần mà không bị lạc.</p>
-      <p class="rv">Bốn khu được kết nối bằng một bản đồ tương tác. Chọn một khu, cảnh quan sẽ chuyển theo, rồi đi sâu vào từng câu chuyện.</p>
+      <p class="rv">Năm phân khu được kết nối bằng một bản đồ tương tác. Chọn một khu, cảnh quan sẽ chuyển theo, rồi đi sâu vào từng câu chuyện.</p>
       <p class="quote rv">“Đi khắp bốn phương, vẫn nhớ một miền quê.”</p>
     </div>
     <div class="intro-art rv" id="introArt"></div>
@@ -389,7 +391,7 @@ footer button:hover{opacity:1;color:var(--gold)}
   </div>
 </section>
 
-<!-- ===== 4 khu (render bằng JS) ===== -->
+<!-- ===== 5 phân khu (render bằng JS) ===== -->
 <main id="zones"></main>
 
 <!-- ===== Trò chơi đố vui (Khu bảo tồn Đồng Nai) ===== -->
@@ -455,39 +457,62 @@ footer button:hover{opacity:1;color:var(--gold)}
    ========================================================= */
 const ZONES = [
   {
-    id: 'a', code: 'A', name: 'Dấu Chân Chiến Khu Đ', short: 'Chiến khu Đ – Trị An', tag: 'Căn cứ cách mạng · Thủy điện Trị An', color: '#c0582f', scene: 'chienkhu',
-    intro: 'Căn cứ địa cách mạng của miền Đông Nam Bộ ẩn mình dưới tán rừng Mã Đà, cùng công trình Thủy điện Trị An và lòng hồ Trị An rộng lớn trên dòng sông Đồng Nai.',
+    id: 'a', code: 'A', name: 'Dấu Chân Chiến Khu Đ', short: 'Chiến khu Đ', tag: 'Căn cứ địa cách mạng', color: '#c0582f', scene: 'chienkhu',
+    intro: 'Căn cứ địa cách mạng của miền Đông Nam Bộ, ẩn mình dưới tán rừng Mã Đà, nơi ghi dấu những năm tháng kháng chiến kiên cường của quân và dân.',
     items: [
       { id: 'tuongcuc', title: 'Căn cứ Trung ương Cục miền Nam', icon: 'flag', type: 'Di tích',
-        summary: 'Mô hình căn cứ ẩn dưới tán rừng Mã Đà với lều lán quân y, hầm chông, chiến sĩ bộ đội và lối đi quanh co.',
+        summary: 'Căn cứ ẩn dưới tán rừng Mã Đà, được tái hiện trên sa bàn với lều lán quân y, hầm chông và lối đi quanh co.',
         children: [
-          { title: 'Lịch sử hình thành', text: 'Ngày 23/01/1961, Hội nghị Trung ương 3 khóa III quyết định thành lập Trung ương Cục miền Nam, thay cho Xứ ủy Nam Bộ.' },
-          { title: 'Khu di tích hôm nay', text: 'Khu di tích Trung ương Cục miền Nam được xếp hạng di tích quốc gia năm 2001. Hằng năm, ngày 21/4 là lễ giỗ chung các liệt sĩ tại đây.' }
+          { title: 'Thành lập', text: 'Ngày 23/01/1961, Hội nghị Trung ương 3 khóa III quyết định thành lập Trung ương Cục miền Nam, thay cho Xứ ủy Nam Bộ.' },
+          { title: 'Lễ giỗ chung liệt sĩ', text: 'Nhiều năm nay, cứ đến ngày 21/4, Khu bảo tồn lại tổ chức lễ giỗ chung cho các liệt sĩ đã hy sinh tại khu di tích.' }
         ] },
-      { id: 'chienkhud', title: 'Dấu chân Chiến khu Đ', icon: 'scroll', type: 'Lịch sử', video: true,
-        summary: 'Căn cứ địa cách mạng của miền Đông Nam Bộ từ năm 1946, nơi ghi dấu tinh thần kiên cường của quân và dân.',
+      { id: 'banditich', title: 'Ba di tích trong rừng', icon: 'scroll', type: 'Di tích quốc gia',
+        summary: 'Khu bảo tồn đang quản lý ba di tích cấp quốc gia: Căn cứ Trung ương Cục miền Nam, Căn cứ Khu ủy miền Đông Nam Bộ và Địa đạo Suối Linh.',
         children: [
-          { title: 'Ba di tích trong rừng', text: 'Trong Khu bảo tồn có ba di tích lịch sử: Căn cứ Trung ương Cục miền Nam, Căn cứ Khu ủy miền Đông và Địa đạo Suối Linh.' },
-          { title: 'Căn cứ Khu ủy miền Đông', text: 'Căn cứ Khu ủy miền Đông Nam Bộ được thành lập tháng 2 năm 1961 tại Suối Linh.' },
-          { title: 'Huyền thoại rừng Mã Đà', text: 'Bài nghe kể chuyện qua mã QR A1, đưa người xem về những năm tháng kháng chiến dưới tán rừng Mã Đà.' }
+          { title: 'Căn cứ Khu ủy miền Đông Nam Bộ', text: 'Được thành lập tháng 2 năm 1961 tại Suối Linh.' },
+          { title: 'Địa đạo Suối Linh', text: 'Hệ thống địa đạo trong rừng Chiến khu Đ, nay do Khu bảo tồn quản lý cùng hai căn cứ.' },
+          { title: 'Nghĩa trang liệt sĩ Mã Đà', text: 'Nằm trong Khu di tích lịch sử Chiến khu Đ, rộng khoảng 2,5 ha, là nơi các đoàn về thắp hương tưởng niệm.' }
         ] },
-      { id: 'thuydien', title: 'Thủy điện Trị An', icon: 'bolt', type: 'Công trình',
-        summary: 'Biểu tượng năng lượng của tình hữu nghị Việt Nam – Liên Xô trên dòng sông Đồng Nai.',
+      { id: 'mada', title: 'Huyền thoại rừng Mã Đà', icon: 'ear', type: 'Nghe kể chuyện', video: true, wide: true,
+        summary: 'Tư liệu lịch sử và bài nghe kể chuyện đưa người xem về những năm tháng kháng chiến dưới tán rừng Mã Đà.',
         children: [
-          { title: 'Mốc xây dựng', text: 'Công trình khởi công năm 1984 và hòa lưới điện năm 1988.' },
-          { title: 'Thông số chính', text: 'Công suất 400 MW với 4 tổ máy, sản lượng khoảng 1,7 tỷ kWh mỗi năm.' },
-          { title: 'Vai trò', text: 'Phát điện, cắt lũ và cấp nước cho vùng hạ du sông Đồng Nai.' }
-        ] },
-      { id: 'longho', title: 'Lòng hồ Trị An', icon: 'wave', type: 'Cảnh quan', wide: true,
-        summary: 'Hồ chứa rộng lớn với dung tích khoảng 2,76 tỷ m³, tạo nên cảnh quan mặt nước mênh mông giữa rừng.',
-        children: [
-          { title: 'Mặt nước mênh mông', text: 'Khu Bảo tồn Thiên nhiên – Văn hóa Đồng Nai quản lý hơn 32.500 ha mặt nước hồ Trị An.' },
-          { title: 'Trên sa bàn', text: 'Góc trái dưới sa bàn mô phỏng đập xả nước bê tông, nhà máy phát điện, dòng sông Đồng Nai và lòng hồ Trị An.' }
+          { title: 'Trên sa bàn', text: 'Góc trái phía trên sa bàn tái hiện căn cứ ẩn mình dưới tán rừng, lều lán quân y, hầm chông, chiến sĩ bộ đội và lối đi quanh co.' },
+          { title: 'Bài học kiên cường', text: 'Chiến khu Đ là căn cứ địa cách mạng của quân dân miền Đông Nam Bộ trong hai cuộc kháng chiến chống Pháp và chống Mỹ.' }
         ] }
     ]
   },
   {
-    id: 'b', code: 'B', name: 'Rừng Xanh Vĩnh Cửu', short: 'Rừng xanh Vĩnh Cửu', tag: 'Hệ sinh thái đa dạng', color: '#2f5d3a', scene: 'forest',
+    id: 'b', code: 'B', name: 'Thủy Điện Trị An', short: 'Thủy điện Trị An', tag: 'Trạm thủy điện & lòng hồ Trị An', color: '#3d6f86', scene: 'thuydien',
+    intro: 'Công trình thủy điện lớn trên dòng sông Đồng Nai, biểu tượng năng lượng của tình hữu nghị Việt Nam – Liên Xô, cùng lòng hồ Trị An mênh mông.',
+    items: [
+      { id: 'lichsu', title: 'Lịch sử xây dựng', icon: 'scroll', type: 'Lịch sử',
+        summary: 'Công trình được xây dựng với sự hỗ trợ toàn diện của Liên Xô trước đây.',
+        children: [
+          { title: 'Các mốc chính', text: 'Khởi công năm 1984, bắt đầu phát điện ngày 30/4/1988 và hoàn thành năm 1991.' },
+          { title: 'Mở rộng nhà máy', text: 'Ngày 19/8/2025, Nhà máy Thủy điện Trị An mở rộng được khởi công, xây thêm hai tổ máy để nâng tổng công suất lên 600 MW, dự kiến hoàn thành năm 2027.' }
+        ] },
+      { id: 'thongso', title: 'Thông số nhà máy', icon: 'bolt', type: 'Công trình',
+        summary: '4 tổ máy với tổng công suất 400 MW, cung cấp khoảng 1,7 tỷ kWh điện mỗi năm.',
+        children: [
+          { title: 'Công suất', text: 'Nhà máy có 4 tổ máy với tổng công suất 400 MW.' },
+          { title: 'Sản lượng điện', text: 'Mỗi năm cung cấp khoảng 1,7 tỷ kWh điện cho hệ thống điện quốc gia.' }
+        ] },
+      { id: 'vaitro', title: 'Vai trò của thủy điện', icon: 'wave', type: 'Kinh tế',
+        summary: 'Phát điện, cắt lũ và cấp nước cho vùng hạ du sông Đồng Nai.',
+        children: [
+          { title: 'Bậc thang cuối cùng', text: 'Thủy điện Trị An là bậc thang thủy điện cuối cùng trên hệ thống sông Đồng Nai.' },
+          { title: 'Phát điện, cắt lũ, cấp nước', text: 'Ngoài phát điện, hồ chứa còn góp phần điều tiết lũ và cấp nước cho vùng hạ du.' }
+        ] },
+      { id: 'longho', title: 'Lòng hồ Trị An', icon: 'pin', type: 'Cảnh quan',
+        summary: 'Hồ chứa rộng lớn tạo nên cảnh quan mặt nước mênh mông giữa núi rừng.',
+        children: [
+          { title: 'Mặt nước mênh mông', text: 'Khu Bảo tồn Thiên nhiên – Văn hóa Đồng Nai quản lý hơn 32.500 ha mặt nước hồ Trị An.' },
+          { title: 'Trên sa bàn', text: 'Góc trái phía dưới sa bàn mô phỏng đập xả nước bê tông, nhà máy phát điện, dòng sông Đồng Nai và lòng hồ Trị An.' }
+        ] }
+    ]
+  },
+  {
+    id: 'c', code: 'C', name: 'Rừng Xanh Vĩnh Cửu', short: 'Rừng xanh Vĩnh Cửu', tag: 'Hệ sinh thái đa dạng', color: '#2f5d3a', scene: 'forest',
     intro: 'Rừng nguyên sinh của Khu Bảo tồn Thiên nhiên – Văn hóa Đồng Nai rộng hơn 100.000 ha, nơi sinh sống của nhiều loài động vật và thực vật quý hiếm.',
     items: [
       { id: 'baoton', title: 'Khu Bảo tồn Đồng Nai', icon: 'leaf', type: 'Giới thiệu',
@@ -504,13 +529,13 @@ const ZONES = [
           { title: 'Con số ấn tượng', text: 'Khu bảo tồn ghi nhận hơn 1.800 loài động vật, trong đó có 141 loài nguy cấp, quý hiếm.' }
         ] },
       { id: 'thucvat', title: 'Thực vật & cây gỗ quý', icon: 'tree', type: 'Thực vật',
-        summary: 'Thảm thực vật rừng nguyên sinh với hơn 1.500 loài thực vật và nhiều cây gỗ quý.',
+        summary: 'Thảm thực vật rừng nguyên sinh với nhiều cây gỗ quý.',
         children: [
           { title: 'Cây gỗ quý', text: 'Cẩm lai và gỗ trắc là những cây gỗ quý hiếm của rừng Đồng Nai.' },
           { title: 'Trên sa bàn', text: 'Trung tâm sa bàn mô phỏng thảm thực vật rừng nguyên sinh, suối nước và cầu gỗ bắc qua suối.' }
         ] },
       { id: 'thuvien', title: 'Thư viện cây con & bảo vệ rừng', icon: 'book', type: 'Thư viện', wide: true,
-        summary: 'Hồ sơ đa dạng sinh học qua mã QR B1 và bài học bảo vệ môi trường cho học sinh.',
+        summary: 'Hồ sơ đa dạng sinh học và bài học bảo vệ môi trường cho học sinh.',
         children: [
           { title: 'Hồ sơ đa dạng sinh học', text: 'Mỗi loài có thẻ thông tin: tên gọi, đặc điểm nhận dạng, nơi sống và mức độ cần bảo tồn.' },
           { title: 'Giữ rừng từ sớm', text: 'Đồng Nai có chủ trương đóng cửa rừng từ năm 1997, sớm nhất cả nước.' },
@@ -519,26 +544,26 @@ const ZONES = [
     ]
   },
   {
-    id: 'c', code: 'C', name: 'Hồn Quê Phú Lý', short: 'Hồn quê Phú Lý', tag: 'Văn hóa dân tộc Chơ Ro', color: '#d9a441', scene: 'village',
+    id: 'd', code: 'D', name: 'Hồn Quê Phú Lý', short: 'Hồn quê Phú Lý', tag: 'Văn hóa dân tộc Chơ Ro', color: '#d9a441', scene: 'village',
     intro: 'Không gian văn hóa của đồng bào Chơ Ro (Chauro) ở xã Phú Lý: nhà sàn gỗ, tiếng cồng chiêng, lễ cúng thần lúa và nghề đan lát mây tre.',
     items: [
       { id: 'nhasan', title: 'Nhà sàn Chơ Ro', icon: 'house', type: 'Kiến trúc',
         summary: 'Kiến trúc nhà sàn gỗ truyền thống của người Chơ Ro, gắn với nếp sống bên rừng.',
         children: [
           { title: 'Người Chơ Ro', text: 'Người Chơ Ro là một trong những cư dân bản địa của vùng đất Đồng Nai.' },
-          { title: 'Trên sa bàn', text: 'Vị trí trung tâm dưới sa bàn tái hiện nhà sàn gỗ, cồng chiêng, hũ rượu cần, gùi đan lát và nông cụ sản xuất.' }
+          { title: 'Trên sa bàn', text: 'Vị trí trung tâm phía dưới sa bàn tái hiện nhà sàn gỗ, cồng chiêng, hũ rượu cần, gùi đan lát và nông cụ sản xuất.' }
         ] },
       { id: 'congchieng', title: 'Cồng chiêng & rượu cần', icon: 'gong', type: 'Âm nhạc', video: true,
-        summary: 'Âm thanh cồng chiêng thực tế qua mã QR C1, cùng hũ gốm rượu cần trong các dịp lễ.',
+        summary: 'Âm thanh cồng chiêng thực tế cùng hũ gốm rượu cần trong các dịp lễ.',
         children: [
-          { title: 'Tiếng cồng chiêng', text: 'Quét mã QR C1 để nghe âm thanh cồng chiêng của đồng bào Chơ Ro.' },
+          { title: 'Tiếng cồng chiêng', text: 'Quét mã QR của phân khu để nghe âm thanh cồng chiêng của đồng bào Chơ Ro.' },
           { title: 'Hũ rượu cần', text: 'Hũ gốm rượu cần là vật dụng quen thuộc trong lễ hội và khi đón khách quý.' }
         ] },
       { id: 'lecung', title: 'Lễ cúng thần lúa Say Yang Va', icon: 'rice', type: 'Lễ hội', video: true,
         summary: 'Lễ hội truyền thống quan trọng của người Chơ Ro, thể hiện lòng biết ơn thần lúa.',
         children: [
           { title: 'Ý nghĩa', text: 'Lễ cúng thần lúa thể hiện lòng biết ơn và mong ước mùa màng bội thu.' },
-          { title: 'Xem video', text: 'Mã QR C2 – C3 kết nối video tư liệu về Lễ cúng thần lúa Say Yang Va.' }
+          { title: 'Xem video', text: 'Mã QR của phân khu kết nối video tư liệu về Lễ cúng thần lúa Say Yang Va.' }
         ] },
       { id: 'danlat', title: 'Đan lát mây tre & cây thuốc nam', icon: 'basket', type: 'Nghề truyền thống', wide: true,
         summary: 'Gùi, giỏ đan bằng mây tre và kinh nghiệm dùng cây thuốc nam được truyền qua nhiều thế hệ.',
@@ -549,14 +574,14 @@ const ZONES = [
     ]
   },
   {
-    id: 'd', code: 'D', name: 'Trạm Khám Phá Số', short: 'Trạm khám phá số', tag: 'QR · Trợ lý AI · Trò chơi', color: '#3d6f86', scene: 'digital',
+    id: 'e', code: 'E', name: 'Trạm Khám Phá Số', short: 'Trạm khám phá số', tag: 'QR · Trợ lý AI · Trò chơi', color: '#4b5fa8', scene: 'digital',
     intro: 'Góc công nghệ của mô hình: quét mã QR, nghe quê hương kể chuyện, trò chuyện với Trợ lý AI và chơi đố vui để củng cố kiến thức.',
     items: [
       { id: 'qr', title: 'Quét mã QR các phân khu', icon: 'qr', type: 'Kết nối',
         summary: 'Điện thoại quét mã QR trên sa bàn hoặc cẩm nang số, máy tính vào thẳng trang web.',
         children: [
           { title: 'Cách quét', text: 'Mở camera điện thoại, đưa vào mã QR của phân khu muốn tìm hiểu rồi bấm vào đường dẫn hiện ra.' },
-          { title: 'Các mã trên sa bàn', text: 'Mã A1 cho Chiến khu Đ, mã B1 cho rừng Vĩnh Cửu, mã C1 đến C3 cho văn hóa Chơ Ro.' }
+          { title: 'Mã của từng phân khu', text: 'Mỗi phân khu A, B, C, D có mã QR riêng dẫn thẳng tới nội dung của khu đó.' }
         ] },
       { id: 'nghe', title: 'Nghe quê hương kể chuyện', icon: 'ear', type: 'Âm thanh',
         summary: 'Bấm vào tiêu đề hoặc đoạn chữ bất kỳ trên trang để nghe giọng đọc; bấm lần nữa để dừng.',
@@ -646,19 +671,35 @@ const SCENES = {
     <circle cx="430" cy="210" r="80" fill="#fde3b0" opacity=".85"/>
     <path d="M0 360 L110 260 L210 320 L330 230 L460 310 L600 250 V750 H0Z" fill="#7a3a2a" opacity=".7"/>
     <!-- Rừng Mã Đà -->
-    ${[...Array(10)].map((_,i)=>`<circle cx="${i*68-10}" cy="${400+((i*37)%30)}" r="${44+(i%3)*8}" fill="${i%2?'#3a2a1e':'#2e2118'}"/>`).join('')}
-    <path d="M0 410 H600 V470 H0Z" fill="#2e2118"/>
+    ${[...Array(10)].map((_,i)=>`<circle cx="${i*68-10}" cy="${420+((i*37)%30)}" r="${48+(i%3)*8}" fill="${i%2?'#3a2a1e':'#2e2118'}"/>`).join('')}
+    <path d="M0 450 H600 V750 H0Z" fill="#2e2118"/>
     <!-- Lán căn cứ -->
-    <g transform="translate(170 420)"><path d="M-70 10 L0 -40 L70 10Z" fill="#5a3a20"/><rect x="-55" y="8" width="110" height="38" fill="#c7955c"/><rect x="-12" y="18" width="24" height="28" fill="#3a2414"/><path d="M-80 14 L0 -46 L80 14" fill="none" stroke="#2a1a10" stroke-width="5"/></g>
+    <g transform="translate(190 520)"><path d="M-80 10 L0 -48 L80 10Z" fill="#5a3a20"/><rect x="-62" y="8" width="124" height="46" fill="#c7955c"/><rect x="-14" y="20" width="28" height="34" fill="#3a2414"/><path d="M-92 15 L0 -56 L92 15" fill="none" stroke="#1e130b" stroke-width="5"/></g>
     <!-- Cờ -->
-    <g transform="translate(300 330)"><rect x="0" y="0" width="4" height="100" fill="#2a1a10"/><path d="M4 2 H58 V36 H4Z" fill="#d23b2a"/><path d="M31 9 l3.5 7.5 8 .6-6 5.2 1.9 7.8-7.4-4.3-7.4 4.3 1.9-7.8-6-5.2 8-.6z" fill="#ffd24a"/></g>
-    <!-- Lòng hồ & đập Trị An -->
-    <path d="M0 470 H600 V560 H0Z" fill="#9cc0cf"/>
-    <path d="M0 500 Q150 490 300 505 T600 500" fill="none" stroke="#e6f2f5" stroke-width="3" opacity=".7"/>
-    <path d="M60 555 H540 L520 650 H80Z" fill="#d9d2c8"/>
-    ${[...Array(6)].map((_,i)=>`<rect x="${120+i*65}" y="572" width="22" height="70" fill="#b3aa9e"/>`).join('')}
-    <path d="M150 650 Q300 700 450 650 V750 H150Z" fill="#b8d4e0" opacity=".85"/>
-    <path d="M0 660 Q150 640 160 750 H0Z M600 660 Q450 640 440 750 H600Z" fill="#3a2418"/>
+    <g transform="translate(360 400)"><rect x="0" y="0" width="5" height="170" fill="#1e130b"/><path d="M5 2 H75 V48 H5Z" fill="#d23b2a"/><path d="M40 11 l4.5 9.5 10.5.8-8 6.8 2.5 10.2-9.5-5.6-9.5 5.6 2.5-10.2-8-6.8 10.5-.8z" fill="#ffd24a"/></g>
+    <!-- Hầm chông & lối mòn -->
+    <path d="M60 700 Q200 640 300 680 T560 640" fill="none" stroke="#c7955c" stroke-width="6" stroke-dasharray="14 12" opacity=".6"/>
+    ${[...Array(7)].map((_,i)=>`<path d="M${420+i*16} 610 l6 -22 l6 22" fill="#8a6a4a"/>`).join('')}
+  </svg>`,
+  thuydien: (id) => `
+  <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="st${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe0ee"/><stop offset=".6" stop-color="#e9f3f6"/><stop offset="1" stop-color="#9cc0cf"/></linearGradient></defs>
+    <rect width="600" height="750" fill="url(#st${id})"/>
+    <circle cx="140" cy="170" r="60" fill="#fff6d8"/>
+    <path d="M0 360 L120 240 L230 320 L360 210 L480 300 L600 240 V750 H0Z" fill="#6d8f9c"/>
+    <path d="M0 400 Q150 360 300 390 T600 380 V750 H0Z" fill="#4f7280"/>
+    <!-- Cột điện -->
+    ${[90,510].map(x=>`<g stroke="#2b3f48" stroke-width="3" fill="none"><path d="M${x} 400 L${x-18} 470 M${x} 400 L${x+18} 470 M${x-22} 418 H${x+22} M${x-14} 440 H${x+14}"/></g>`).join('')}
+    <path d="M90 418 Q300 470 510 418" fill="none" stroke="#2b3f48" stroke-width="1.5"/>
+    <!-- Lòng hồ -->
+    <path d="M0 470 H600 V565 H0Z" fill="#5f9fbc"/>
+    <path d="M0 500 Q150 490 300 505 T600 500 M0 530 Q150 520 300 535 T600 530" fill="none" stroke="#dff1f7" stroke-width="3" opacity=".7"/>
+    <!-- Đập & cửa xả -->
+    <path d="M40 560 H560 L535 670 H65Z" fill="#e3ded5"/>
+    ${[...Array(6)].map((_,i)=>`<rect x="${110+i*67}" y="578" width="26" height="80" fill="#b8b0a2"/>`).join('')}
+    <path d="M90 670 Q300 720 510 670 V750 H90Z" fill="#cfe6ee"/>
+    ${[...Array(6)].map((_,i)=>`<path d="M${123+i*67} 660 q-6 30 0 60 M${123+i*67} 660 q6 30 0 60" stroke="#ffffff" stroke-width="3" fill="none" opacity=".8"/>`).join('')}
+    <path d="M0 670 Q60 650 90 750 H0Z M600 670 Q540 650 510 750 H600Z" fill="#3b5560"/>
   </svg>`,
   digital: (id) => `
   <svg viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice">
@@ -765,22 +806,23 @@ function renderZones() {
    4. BẢN ĐỒ TƯƠNG TÁC + CHUYỂN CẢNH
    ========================================================= */
 function renderMap() {
-  // Vùng của 4 khu trên bản đồ (path + vị trí ghim)
-  const shapes = {
-    a: { d: 'M60 300 Q40 200 140 170 Q240 150 300 220 Q330 300 280 370 Q200 430 110 400 Q60 370 60 300Z', pin: [180, 290] },
-    b: { d: 'M320 80 Q420 30 540 70 Q620 110 600 200 Q570 260 470 250 Q360 250 320 190 Q300 130 320 80Z', pin: [460, 150] },
-    c: { d: 'M330 300 Q380 260 480 280 Q580 300 590 380 Q590 470 490 500 Q380 520 330 450 Q300 380 330 300Z', pin: [460, 390] },
-    d: { d: 'M650 140 Q760 90 880 150 Q950 220 920 330 Q880 440 760 440 Q660 420 640 320 Q620 220 650 140Z', pin: [780, 280] }
-  };
+  // Vùng của 5 phân khu trên bản đồ (path + vị trí ghim)
+  // Vị trí theo sa bàn: A trái trên, B trái dưới, C trung tâm, D trung tâm dưới, E bên phải
+  const blob = (cx, cy, rx, ry) =>
+    `M${cx - rx} ${cy} Q${cx - rx} ${cy - ry * 1.05} ${cx - rx * .1} ${cy - ry} Q${cx + rx * .95} ${cy - ry * 1.1} ${cx + rx} ${cy - ry * .05} ` +
+    `Q${cx + rx * 1.05} ${cy + ry} ${cx + rx * .1} ${cy + ry} Q${cx - rx * .9} ${cy + ry * 1.08} ${cx - rx} ${cy}Z`;
+  const pos = { a: [170, 140, 130, 100], b: [170, 410, 130, 100], c: [470, 220, 150, 120], d: [470, 450, 140, 85], e: [810, 290, 130, 190] };
+  const shapes = Object.fromEntries(Object.entries(pos).map(([k, [cx, cy, rx, ry]]) => [k, { d: blob(cx, cy, rx, ry), pin: [cx, cy - 12] }]));
+
   $('#mapBox').innerHTML = `
-  <svg viewBox="0 0 980 560" role="group" aria-label="Bản đồ 4 khu">
+  <svg viewBox="0 0 980 560" role="group" aria-label="Bản đồ 5 phân khu">
     <defs><pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#b9a983"/></pattern></defs>
     <rect width="980" height="560" fill="#e6dbc2"/><rect width="980" height="560" fill="url(#dots)" opacity=".6"/>
     <!-- Sông -->
-    <path d="M-10 470 Q160 500 300 470 Q440 430 600 470 Q700 495 640 540 Q610 560 620 580" fill="none" stroke="#9cc0cf" stroke-width="26" stroke-linecap="round"/>
+    <path d="M-10 520 Q120 540 200 500 Q300 450 330 540 Q360 600 420 570" fill="none" stroke="#9cc0cf" stroke-width="26" stroke-linecap="round"/>
     <path d="M600 470 Q640 400 640 340" fill="none" stroke="#9cc0cf" stroke-width="14" stroke-linecap="round"/>
     <!-- Đường đi -->
-    <path d="M180 290 C 300 260, 360 180, 460 150 M460 150 C 470 260, 460 300, 460 390 M460 390 C 600 380, 680 320, 780 280" fill="none" stroke="#8a7650" stroke-width="2.5" stroke-dasharray="6 8"/>
+    <path d="${ZONES.map(z => shapes[z.id].pin).map((p, i) => (i ? 'L' : 'M') + p[0] + ' ' + p[1]).join(' ')}" fill="none" stroke="#8a7650" stroke-width="2.5" stroke-dasharray="6 8"/>
     ${ZONES.map(z => {
       const s = shapes[z.id];
       return `<g class="zone" data-zone="${z.id}" tabindex="0" role="button" aria-label="Khu ${z.code}: ${esc(z.name)}">
@@ -883,7 +925,7 @@ function renderChips() {
     { label: 'Thư viện cây con', q: 'thư viện', c: '#7fae7c' },
     { label: 'Chiến khu Đ', q: 'chiến khu', c: '#e0855c' },
     { label: 'Văn hóa Chơ Ro', q: 'chơ ro', c: '#d9a441' },
-    { label: 'Trạm khám phá số', go: 'd', c: '#7fc3dc' }
+    { label: 'Trạm khám phá số', go: 'e', c: '#9aa8e0' }
   ];
   $('#chips').innerHTML = chips.map(ch => `<button class="chip" style="--cc:${ch.c}" ${ch.go ? `data-go="${ch.go}"` : `data-q="${ch.q}"`}>${ch.label}</button>`).join('');
 }
