@@ -239,6 +239,40 @@ a.card{text-decoration:none;color:inherit}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;z-index:200;background:var(--ink);color:var(--paper);padding:.75rem 1.2rem;border-radius:99px;font-size:.88rem;max-width:min(92vw,520px);text-align:center;pointer-events:none;transition:.35s var(--ease)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+/* ===== Trợ lý AI Hồn Quê (khung chat) ===== */
+.ai-fab{position:fixed;right:20px;bottom:20px;z-index:90;display:flex;align-items:center;gap:.6rem;padding:.55rem 1.1rem .55rem .55rem;border-radius:99px;background:var(--ink);color:var(--paper);font-weight:600;font-size:.92rem;box-shadow:0 14px 34px rgba(0,0,0,.28);transition:transform .3s var(--ease)}
+.ai-fab:hover{transform:translateY(-3px)}
+.ai-fab .av{width:40px;height:40px}
+.ai-fab::after{content:"";position:absolute;left:38px;top:8px;width:10px;height:10px;border-radius:50%;background:#7fe3a0;box-shadow:0 0 0 3px var(--ink)}
+.av{border-radius:50%;background:#f0d9a8;display:grid;place-items:center;flex:none;overflow:hidden}
+.av svg{width:100%;height:100%}
+.ai-box{position:fixed;right:20px;bottom:20px;z-index:95;width:min(400px,calc(100vw - 24px));height:min(600px,calc(100svh - 40px));background:var(--paper);border-radius:22px;box-shadow:0 30px 80px rgba(0,0,0,.35);display:none;flex-direction:column;overflow:hidden}
+.ai-box.show{display:flex;animation:slide .4s var(--ease)}
+.ai-head{display:flex;align-items:center;gap:.75rem;padding:.9rem 1rem;background:var(--forest);color:var(--paper)}
+.ai-head .av{width:44px;height:44px}
+.ai-head b{display:block;font-family:var(--serif);font-size:1.1rem}
+.ai-head small{opacity:.8;font-size:.78rem}
+.ai-head button{margin-left:auto;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);font-size:1.05rem}
+.ai-log{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem;background:#fbf6ea}
+.cmsg{display:flex;gap:.5rem;align-items:flex-end;max-width:92%}
+.cmsg .av{width:30px;height:30px}
+.cmsg .ctext{padding:.7rem .9rem;border-radius:16px;font-size:.92rem;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+.cmsg.bot .ctext{background:var(--paper);border:1px solid var(--line);border-bottom-left-radius:4px}
+.cmsg.user{align-self:flex-end}
+.cmsg.user .ctext{background:var(--forest);color:var(--paper);border-bottom-right-radius:4px}
+.cmsg.err .ctext{background:#fbe3da;border-color:#f0b9a5}
+.typing span{display:inline-block;width:7px;height:7px;margin:0 2px;border-radius:50%;background:var(--ink-2);animation:eq .9s ease-in-out infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+.ai-sug{display:flex;gap:.45rem;flex-wrap:wrap;padding:.6rem 1rem 0;background:#fbf6ea}
+.ai-sug button{font-size:.8rem;padding:.4rem .75rem;border-radius:99px;border:1px solid var(--line);background:var(--paper)}
+.ai-sug button:hover{border-color:var(--forest);color:var(--forest)}
+.ai-form{display:flex;gap:.5rem;padding:.8rem;background:#fbf6ea;border-top:1px solid var(--line)}
+.ai-form input{flex:1;min-width:0;border:1px solid var(--line);border-radius:99px;padding:.75rem 1rem;font:inherit;font-size:.95rem;background:var(--paper);outline:none}
+.ai-form input:focus{border-color:var(--forest)}
+.ai-form button{width:46px;height:46px;border-radius:50%;background:var(--clay);color:#fff;font-size:1.1rem;flex:none}
+.ai-form button:disabled{opacity:.5}
+@media(max-width:560px){.ai-fab span{display:none}.ai-fab{padding:.5rem}.ai-box{right:0;bottom:0;width:100%;height:88svh;border-radius:22px 22px 0 0}}
+
 /* ===== Footer ===== */
 footer{background:var(--ink);color:rgba(245,238,223,.75);padding:4rem 0 2rem;font-size:.9rem}
 footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem}
@@ -434,6 +468,15 @@ footer button:hover{opacity:1;color:var(--gold)}
   </div>
 </footer>
 
+<!-- ===== Trợ lý AI Hồn Quê ===== -->
+<button class="ai-fab" id="aiFab" aria-label="Mở Trợ lý AI Hồn Quê"><span class="av"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#f0d9a8"/><path d="M14 60c2-12 9-17 18-17s16 5 18 17" fill="#2f5d3a"/><circle cx="32" cy="28" r="12" fill="#e2b68a"/><path d="M19 22c3-8 23-8 26 0-6-3-20-3-26 0z" fill="#c9c2b4"/><path d="M24 36c2 7 14 7 16 0-3 3-13 3-16 0z" fill="#efeae0"/><path d="M27 37c3 9 7 9 10 0" fill="#efeae0"/><circle cx="27.5" cy="28" r="1.6" fill="#3a2414"/><circle cx="36.5" cy="28" r="1.6" fill="#3a2414"/></svg></span><span>Hỏi già làng</span></button>
+<div class="ai-box" id="aiBox" role="dialog" aria-label="Trợ lý AI Hồn Quê">
+  <div class="ai-head"><span class="av"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#f0d9a8"/><path d="M14 60c2-12 9-17 18-17s16 5 18 17" fill="#2f5d3a"/><circle cx="32" cy="28" r="12" fill="#e2b68a"/><path d="M19 22c3-8 23-8 26 0-6-3-20-3-26 0z" fill="#c9c2b4"/><path d="M24 36c2 7 14 7 16 0-3 3-13 3-16 0z" fill="#efeae0"/><path d="M27 37c3 9 7 9 10 0" fill="#efeae0"/><circle cx="27.5" cy="28" r="1.6" fill="#3a2414"/><circle cx="36.5" cy="28" r="1.6" fill="#3a2414"/></svg></span><div><b>Trợ lý Hồn Quê</b><small>Già làng am hiểu Vĩnh Cửu · trả lời bằng AI</small></div><button id="aiClose" aria-label="Đóng trợ lý">✕</button></div>
+  <div class="ai-log" id="aiLog" aria-live="polite"></div>
+  <div class="ai-sug" id="aiSug"></div>
+  <form class="ai-form" id="aiForm"><input id="aiInput" maxlength="500" autocomplete="off" placeholder="Hỏi ông về Chiến khu Đ, Trị An, Chơ Ro…" aria-label="Câu hỏi cho trợ lý"><button type="submit" id="aiSend" aria-label="Gửi">➤</button></form>
+</div>
+
 <!-- ===== Modal chi tiết ===== -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="bg" data-close></div>
@@ -589,7 +632,7 @@ const ZONES = [
           { title: 'Bấm đâu nghe đó', text: 'Tiêu đề và nội dung được tách riêng, bấm vào phần nào sẽ nghe đọc phần đó.' },
           { title: 'Giọng đọc', text: 'Ưu tiên giọng nữ miền Nam thu sẵn; nếu chưa có sẽ dùng giọng đọc tiếng Việt của trình duyệt.' }
         ] },
-      { id: 'ai', title: 'Trợ lý AI Hồn Quê', icon: 'chat', type: 'Hỏi đáp',
+      { id: 'ai', title: 'Trợ lý AI Hồn Quê', icon: 'chat', type: 'Hỏi đáp', link: '#tro-ly', linkText: 'Hỏi ngay',
         summary: 'Trợ lý trong vai già làng am hiểu Vĩnh Cửu, trả lời câu hỏi của học sinh dựa trên dữ liệu đã thu thập.',
         children: [
           { title: 'Hỏi gì cũng được', text: 'Hỏi về Chiến khu Đ, Thủy điện Trị An, Khu bảo tồn Đồng Nai và văn hóa Chơ Ro Phú Lý.' },
@@ -792,7 +835,7 @@ function renderZones() {
                 <span class="tp">${esc(it.type)}</span>
                 <h3>${esc(it.title)}</h3>
                 <p>${esc(it.summary)}</p>
-                <span class="more">${it.link ? 'Chơi ngay' : it.children.length + ' nội dung'} <i>→</i></span>
+                <span class="more">${it.link ? (it.linkText || 'Chơi ngay') : it.children.length + ' nội dung'} <i>→</i></span>
               </${it.link ? 'a' : 'button'}>`).join('')}
           </div>
         </div>
@@ -1213,7 +1256,7 @@ const SPEAK_SEL = [
   '.zhead h2', '.zhead p:not(.eyebrow)',
   '#pName', '#pIntro',
   '#mTitle', '#mSum', '.ac-body p',
-  '.quiz-head h2', '.quiz-head p:not(.eyebrow)', '.qtext', '.why-txt',
+  '.quiz-head h2', '.quiz-head p:not(.eyebrow)', '.qtext', '.why-txt', '.cmsg.bot .ctext',
   '.explore h2'
 ].join(',');
 
@@ -1339,6 +1382,85 @@ window.hqTexts = () => {
   const seen = new Set();
   return list.map(normText).filter(t => t && !seen.has(t) && seen.add(t)).map(t => ({ key: textKey(t), text: t }));
 };
+
+/* =========================================================
+   10. TRỢ LÝ AI HỒN QUÊ (Gemini qua Cloudflare Worker)
+   Dán địa chỉ Worker vào AI_ENDPOINT, ví dụ: https://hon-que-ai.ten-ban.workers.dev
+   ========================================================= */
+const AI_ENDPOINT = '';
+const AI_SUGGEST = ['Chiến khu Đ là gì vậy ông?', 'Thủy điện Trị An có bao nhiêu tổ máy?', 'Người Chơ Ro có lễ hội gì?', 'Rừng Vĩnh Cửu có con vật quý nào?'];
+const aiHistory = [];           // [{role:'user'|'model', text}]
+const aiBox = $('#aiBox'), aiLog = $('#aiLog'), aiInput = $('#aiInput'), aiSend = $('#aiSend');
+const AV_HTML = $('#aiFab .av').innerHTML;
+
+// Hiển thị chữ an toàn: chống chèn mã, cho phép **in đậm**
+const fmt = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+function aiAdd(role, text, extra = '') {
+  const el = document.createElement('div');
+  el.className = `cmsg ${role === 'user' ? 'user' : 'bot'} ${extra}`;
+  el.innerHTML = (role === 'user' ? '' : `<span class="av">${AV_HTML}</span>`) + `<div class="ctext">${extra === 'typing' ? '<span></span><span></span><span></span>' : fmt(text)}</div>`;
+  if (extra === 'typing') el.querySelector('.ctext').classList.add('typing');
+  aiLog.appendChild(el);
+  aiLog.scrollTop = aiLog.scrollHeight;
+  return el;
+}
+function aiOpen() {
+  aiBox.classList.add('show');
+  $('#aiFab').style.display = 'none';
+  if (!aiLog.children.length) {
+    aiAdd('model', 'Chào cháu! Ông là già làng Hồn Quê. Cháu muốn nghe chuyện gì về Chiến khu Đ, Thủy điện Trị An, rừng Vĩnh Cửu hay người Chơ Ro ở Phú Lý?');
+    $('#aiSug').innerHTML = AI_SUGGEST.map(q => `<button type="button">${esc(q)}</button>`).join('');
+  }
+  setTimeout(() => aiInput.focus(), 50);
+}
+function aiClose() {
+  aiBox.classList.remove('show');
+  $('#aiFab').style.display = '';
+  if (tts.activeEl && aiBox.contains(tts.activeEl)) tts.stop();
+}
+async function aiAsk(question) {
+  question = question.trim().slice(0, 500);
+  if (!question || aiSend.disabled) return;
+  $('#aiSug').innerHTML = '';
+  aiAdd('user', question);
+  aiHistory.push({ role: 'user', text: question });
+  aiInput.value = '';
+  if (!AI_ENDPOINT) {
+    aiAdd('model', 'Trợ lý chưa được kết nối. Người làm web cần dán địa chỉ Cloudflare Worker vào AI_ENDPOINT.', 'err');
+    aiHistory.pop();
+    return;
+  }
+  aiSend.disabled = true;
+  const typing = aiAdd('model', '', 'typing');
+  try {
+    const res = await fetch(AI_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: aiHistory.slice(-20) })
+    });
+    const data = await res.json().catch(() => ({}));
+    typing.remove();
+    if (!res.ok || !data.text) throw new Error(data.error || 'Trợ lý đang bận, cháu thử lại sau nhé.');
+    aiAdd('model', data.text);
+    aiHistory.push({ role: 'model', text: data.text });
+  } catch (err) {
+    typing.remove();
+    aiHistory.pop(); // bỏ câu hỏi lỗi để lần sau hỏi lại
+    aiAdd('model', err.message.startsWith('Failed') ? 'Không kết nối được tới trợ lý, cháu kiểm tra mạng nhé.' : err.message, 'err');
+  } finally {
+    aiSend.disabled = false;
+    aiInput.focus();
+  }
+}
+$('#aiFab').addEventListener('click', aiOpen);
+$('#aiClose').addEventListener('click', aiClose);
+$('#aiForm').addEventListener('submit', e => { e.preventDefault(); aiAsk(aiInput.value); });
+$('#aiSug').addEventListener('click', e => { const b = e.target.closest('button'); if (b) aiAsk(b.textContent); });
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href="#tro-ly"]');
+  if (a) { e.preventDefault(); aiOpen(); }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && aiBox.classList.contains('show')) aiClose(); });
 
 /* Khởi chạy */
 quizStart();
