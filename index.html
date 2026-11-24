@@ -331,7 +331,7 @@ footer button:hover{opacity:1;color:var(--gold)}
     <div class="wrap">
       <p class="eyebrow rv">Dự án di sản văn hóa số</p>
       <h1 class="rv">Hồn <em>Quê</em></h1>
-      <p class="lead rv">Một miền quê thu nhỏ trong vài cú chạm: dấu tích xưa, rừng xanh, làng nghề và những công trình gắn với lịch sử vùng đất. Bấm chuột là tới nơi Sơn muốn tìm.</p>
+      <p class="lead rv">Một miền quê thu nhỏ trong vài cú chạm: dấu tích xưa, rừng xanh, làng nghề và những công trình gắn với lịch sử vùng đất. Bấm chuột là tới nơi bạn muốn tìm.</p>
       <div class="hero-actions rv">
         <a href="#ban-do" class="btn btn-gold">Mở bản đồ 4 khu →</a>
         <a href="#gioi-thieu" class="btn btn-ghost">▶ Xem giới thiệu</a>
@@ -1020,7 +1020,7 @@ function quizAnswer(k) {
   const last = game.i === game.list.length - 1;
   $('#qafter').innerHTML = `
     <div class="why"><span>${ok ? '✅' : k === -1 ? '⏰' : '💡'}</span>
-      <div><b>${ok ? 'Chính xác!' : k === -1 ? 'Hết giờ!' : 'Chưa đúng rồi.'}</b>${esc(q.why)}</div></div>
+      <div><b>${ok ? 'Chính xác!' : k === -1 ? 'Hết giờ!' : 'Chưa đúng rồi.'}</b><p class="why-txt">${esc(q.why)}</p></div></div>
     <div class="qnext">
       <span class="gain">${ok ? `+${gain} điểm${game.streak >= 3 ? ' (thưởng chuỗi 🔥)' : ''}` : ''}</span>
       <button class="qbtn" data-quiz="next">${last ? 'Xem kết quả' : 'Câu tiếp theo →'}</button>
@@ -1106,37 +1106,64 @@ const SPEAK_SEL = [
   '.zhead h2', '.zhead p:not(.eyebrow)',
   '#pName', '#pIntro',
   '#mTitle', '#mSum', '.ac-body p',
-  '.quiz-head h2', '.quiz-head p:not(.eyebrow)', '.qtext', '.why div',
+  '.quiz-head h2', '.quiz-head p:not(.eyebrow)', '.qtext', '.why-txt',
   '.explore h2'
 ].join(',');
+
+// Chuẩn hóa chữ + tạo mã file (FNV-1a trên UTF-8) — phải khớp với tools/tao_giong_doc.py
+const normText = (t) => t.normalize('NFC').replace(/\s+/g, ' ').trim();
+function textKey(t) {
+  let h = 0x811c9dc5;
+  for (const byte of new TextEncoder().encode(normText(t))) { h ^= byte; h = Math.imul(h, 0x01000193) >>> 0; }
+  return h.toString(16).padStart(8, '0');
+}
 
 const tts = {
   supported: 'speechSynthesis' in window,
   voice: null,
   activeEl: null,
+  audio: null,
+  missing: new Set(),   // mã file MP3 không có -> lần sau dùng luôn giọng trình duyệt
   pickVoice() {
     if (!this.supported) return;
-    const vs = speechSynthesis.getVoices();
-    // Ưu tiên giọng tiếng Việt chất lượng cao (Microsoft Online / Google) nếu máy có
-    this.voice = vs.find(v => /^vi/i.test(v.lang) && /online|natural|google/i.test(v.name)) || vs.find(v => /^vi/i.test(v.lang)) || null;
+    const vi = speechSynthesis.getVoices().filter(v => /^vi/i.test(v.lang));
+    // Ưu tiên giọng NỮ (Microsoft HoaiMy, Google tiếng Việt), tránh giọng nam NamMinh
+    this.voice = vi.find(v => /hoaimy|female|nữ/i.test(v.name)) || vi.find(v => /google/i.test(v.name)) || vi.find(v => !/namminh|male/i.test(v.name)) || vi[0] || null;
   },
   stop() {
-    if (!this.supported) return;
-    speechSynthesis.cancel();
+    if (this.audio) { this.audio.pause(); this.audio = null; }
+    if (this.supported) speechSynthesis.cancel();
     if (this.activeEl) this.activeEl.classList.remove('speaking');
     this.activeEl = null;
   },
   speak(text, el) {
-    if (!this.supported) return toast('Trình duyệt này chưa hỗ trợ đọc nội dung. Hãy dùng Chrome hoặc Edge bản mới.');
     const same = this.activeEl === el;
     this.stop();
     if (same) return; // bấm lần nữa = dừng
+    this.activeEl = el;
+    el.classList.add('speaking');
+    const key = textKey(text);
+    if (this.missing.has(key)) return this.speakBrowser(text, el);
+    // 1) Phát file MP3 giọng nữ miền Nam đã thu sẵn
+    const a = new Audio(`audio/${key}.mp3`);
+    this.audio = a;
+    a.onended = () => { if (this.activeEl === el) this.stop(); };
+    a.onerror = () => {             // chưa có file -> đọc bằng giọng trình duyệt
+      if (this.audio !== a) return;
+      this.missing.add(key);
+      this.audio = null;
+      this.speakBrowser(text, el);
+    };
+    a.play().catch(() => a.onerror());
+  },
+  // 2) Dự phòng: giọng có sẵn trong trình duyệt
+  speakBrowser(text, el) {
+    if (this.activeEl !== el) return;
+    if (!this.supported) { this.stop(); return toast('Trình duyệt này chưa hỗ trợ đọc nội dung. Hãy dùng Chrome hoặc Edge bản mới.'); }
     if (!this.voice) this.pickVoice();
     if (!this.voice) toast('Máy chưa có giọng đọc tiếng Việt, âm thanh có thể không chuẩn. Nên mở bằng Microsoft Edge.');
     // Chia nhỏ theo câu: Chrome hay tự dừng khi đọc đoạn quá dài
-    const chunks = text.replace(/\s+/g, ' ').replace(/([.!?:])\s*\./g, '$1').match(/[^.!?;:]+[.!?;:]*/g) || [text];
-    this.activeEl = el;
-    el.classList.add('speaking');
+    const chunks = normText(text).replace(/([.!?:])\s*\./g, '$1').match(/[^.!?;:]+[.!?;:]*/g) || [text];
     chunks.forEach((c, i) => {
       const u = new SpeechSynthesisUtterance(c.trim());
       u.lang = 'vi-VN';
@@ -1193,6 +1220,18 @@ document.addEventListener('keydown', e => {
   const el = e.target.closest?.('.tts');
   if (el && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); readEl(el); }
 });
+
+// Liệt kê toàn bộ chữ có thể đọc (kể cả nội dung khung chi tiết, câu đố) để tạo file MP3
+window.hqTexts = () => {
+  const list = [...document.querySelectorAll('.hero .tts, .intro .tts, .sec-head .tts, .zhead .tts, .quiz-head .tts, .explore .tts')].map(el => el.innerText);
+  ZONES.forEach(z => {
+    list.push(z.name, z.intro);
+    z.items.forEach(it => { list.push(it.title, it.summary); it.children.forEach(c => list.push(c.text)); });
+  });
+  QUIZ.forEach(q => list.push(q.q, q.why));
+  const seen = new Set();
+  return list.map(normText).filter(t => t && !seen.has(t) && seen.add(t)).map(t => ({ key: textKey(t), text: t }));
+};
 
 /* Khởi chạy */
 quizStart();
