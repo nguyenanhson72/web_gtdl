@@ -1,0 +1,3 @@
+# Không đẩy API key lên GitHub
+tools/.env
+__pycache__/

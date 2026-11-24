@@ -111,6 +111,16 @@ def main() -> None:
             download_when_ready(url, dest)
             done += 1
             print(f"[{i}/{len(items)}] OK {dest.name}  {text[:50]}")
+        except requests.HTTPError as err:
+            if err.response is not None and err.response.status_code in (401, 403):
+                sys.exit(
+                    "\nAPI key không hợp lệ (lỗi 401/403). Kiểm tra lại:\n"
+                    "  - Key dán đúng, không có dấu ngoặc kép hay dấu cách\n"
+                    "  - Key thuộc dịch vụ Text to Speech trên console.fpt.ai\n"
+                    "  - Nên ghi key vào file tools\\.env dạng: FPT_API_KEY=key_cua_ban"
+                )
+            failed += 1
+            print(f"[{i}/{len(items)}] LỖI: {err}  ({text[:50]})")
         except Exception as err:  # in lỗi rồi làm tiếp đoạn sau
             failed += 1
             print(f"[{i}/{len(items)}] LỖI: {err}  ({text[:50]})")
