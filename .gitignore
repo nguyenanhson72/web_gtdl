@@ -1,4 +1,9 @@
 # Không đẩy API key lên GitHub
 .env
+.env.*
+.dev.vars
+*.pem
+*.key
 .claude/
+node_modules/
 __pycache__/
