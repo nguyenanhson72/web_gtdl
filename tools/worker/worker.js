@@ -2,13 +2,19 @@
  * Trạm trung gian "Trợ lý Hồn Quê" chạy trên Cloudflare Workers (miễn phí).
  * Web (GitHub Pages) -> Worker này -> Gemini API. API key nằm ở Worker, người xem web không thấy.
  *
- * Biến cần khai báo trong Cloudflare (Settings > Variables and Secrets):
- *   GEMINI_API_KEY  (Secret)  : key lấy ở Google AI Studio
- *   ALLOWED_ORIGIN  (Text)    : https://nguyenanhson72.github.io  (nhiều web thì cách nhau dấu phẩy)
- *   MODEL           (Text, tùy chọn): mặc định gemini-3.5-flash-lite
+ * Cách trả lời: thử Gemini trước; Gemini lỗi (hoặc chưa có key) thì tự chuyển sang Workers AI của Cloudflare.
+ *
+ * Cài đặt trong Cloudflare (Settings):
+ *   ALLOWED_ORIGIN  (Variable, Text): https://nguyenanhson72.github.io  (nhiều web thì cách nhau dấu phẩy)
+ *   Binding Workers AI tên AI        : bắt buộc để dùng AI miễn phí của Cloudflare
+ *   GEMINI_API_KEY  (Secret, tùy chọn): key Google AI Studio, khi nào Gemini dùng được
+ *   MODEL           (Text, tùy chọn) : model Gemini, mặc định gemini-3.5-flash-lite
+ *   CF_MODEL        (Text, tùy chọn) : model Workers AI, mặc định @cf/meta/llama-3.3-70b-instruct-fp8-fast
  */
 
 const DEFAULT_MODEL = 'gemini-3.5-flash-lite';
+// Thử lần lượt: model đầu chính, các model sau dự phòng (đều đang được Cloudflare hỗ trợ)
+const DEFAULT_CF_MODELS = ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/zai-org/glm-4.7-flash', '@cf/meta/llama-3.1-8b-instruct-fast'];
 const MAX_TURNS = 10;        // chỉ gửi 10 lượt hỏi đáp gần nhất
 const MAX_CHARS = 500;       // mỗi câu hỏi tối đa 500 ký tự
 
@@ -41,7 +47,7 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
     if (request.method !== 'POST') return reply({ error: 'Chỉ nhận yêu cầu POST.' }, 405);
     if (!okOrigin) return reply({ error: 'Trang web này chưa được phép dùng trợ lý.' }, 403);
-    if (!env.GEMINI_API_KEY) return reply({ error: 'Trạm chưa có GEMINI_API_KEY.' }, 500);
+    if (!env.GEMINI_API_KEY && !env.AI) return reply({ error: 'Trạm chưa có GEMINI_API_KEY hoặc binding Workers AI (tên AI).' }, 500);
 
     // Kiểm tra dữ liệu gửi lên
     let body;
@@ -54,29 +60,76 @@ export default {
       return reply({ error: 'Cháu hãy nhập câu hỏi nhé.' }, 400);
     }
 
-    const model = env.MODEL || DEFAULT_MODEL;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
-    try {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': env.GEMINI_API_KEY },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: `${PERSONA}\n\nDỮ LIỆU:\n${KNOWLEDGE}` }] },
-          contents,
-          generationConfig: { temperature: 0.4, maxOutputTokens: 700 }
-        })
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        console.log('Gemini error', res.status, JSON.stringify(data).slice(0, 500));
-        if (res.status === 429) return reply({ error: 'Hôm nay nhiều bạn hỏi quá, cháu đợi một lát rồi hỏi lại nhé.' }, 429);
-        return reply({ error: 'Trợ lý đang bận, cháu thử lại sau nhé.' }, 502);
-      }
-      const text = (data.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('').trim();
-      return reply({ text: text || 'Ông chưa nghĩ ra câu trả lời, cháu hỏi cách khác giúp ông nhé.' });
-    } catch (err) {
-      console.log('Worker error', String(err));
-      return reply({ error: 'Không kết nối được tới Gemini, cháu thử lại sau nhé.' }, 502);
+    const system = `${PERSONA}\n\nDỮ LIỆU:\n${KNOWLEDGE}`;
+    let busy = false;   // có nơi báo hết lượt (429)
+
+    // 1) Gemini (nếu có key)
+    if (env.GEMINI_API_KEY) {
+      const r = await askGemini(env, system, contents);
+      if (r.text) return reply({ text: r.text, source: 'gemini' });
+      busy = busy || r.status === 429;
     }
+    // 2) Workers AI của Cloudflare (nếu đã gắn binding AI)
+    if (env.AI) {
+      const r = await askWorkersAI(env, system, contents);
+      if (r.text) return reply({ text: r.text, source: 'workers-ai' });
+      busy = busy || r.busy;
+    }
+    if (busy) return reply({ error: 'Hôm nay nhiều bạn hỏi quá, cháu đợi một lát rồi hỏi lại nhé.' }, 429);
+    return reply({ error: 'Trợ lý đang bận, cháu thử lại sau nhé.' }, 502);
   }
 };
+
+// Gọi Gemini API. Trả về { text } khi thành công, { status } khi lỗi.
+async function askGemini(env, system, contents) {
+  const model = env.MODEL || DEFAULT_MODEL;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': env.GEMINI_API_KEY },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: system }] },
+        contents,
+        generationConfig: { temperature: 0.4, maxOutputTokens: 700 }
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      console.log('Gemini error', res.status, JSON.stringify(data).slice(0, 300));
+      return { status: res.status };
+    }
+    const text = (data.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('').trim();
+    return { text };
+  } catch (err) {
+    console.log('Gemini fetch error', String(err));
+    return { status: 0 };
+  }
+}
+
+// Gọi Workers AI (miễn phí theo hạn mức ngày của Cloudflare). Thử lần lượt từng model.
+async function askWorkersAI(env, system, contents) {
+  const messages = [
+    { role: 'system', content: system },
+    ...contents.map(c => ({ role: c.role === 'model' ? 'assistant' : 'user', content: c.parts[0].text }))
+  ];
+  const models = env.CF_MODEL ? [env.CF_MODEL, ...DEFAULT_CF_MODELS] : DEFAULT_CF_MODELS;
+  let busy = false;
+  for (const model of [...new Set(models)]) {
+    try {
+      // GLM là model "suy nghĩ" trước khi trả lời nên cần nhiều chữ hơn, không thì trả về rỗng
+      const maxTokens = model.includes('glm') ? 2500 : 700;
+      const out = await env.AI.run(model, { messages, max_tokens: maxTokens, temperature: 0.4 });
+      let text = out?.response ?? out?.choices?.[0]?.message?.content ?? out?.result?.response ?? '';
+      if (typeof text !== 'string') text = JSON.stringify(text);
+      text = text.replace(/<think>[\s\S]*?<\/think>/g, '').trim(); // bỏ phần "suy nghĩ" nếu model có
+      if (text) return { text };
+      console.log('Workers AI empty', model, JSON.stringify(out).slice(0, 200));
+    } catch (err) {
+      const msg = String(err?.message || err);
+      console.log('Workers AI error', model, msg.slice(0, 300));
+      if (/429|limit|exceed|neuron/i.test(msg)) busy = true;
+    }
+  }
+  return { busy };
+}
